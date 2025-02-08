@@ -34,9 +34,6 @@
     "next-themes": "^0.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "slate": "^0.112.0",
-    "slate-history": "^0.110.3",
-    "slate-react": "^0.112.1",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7"
   },
