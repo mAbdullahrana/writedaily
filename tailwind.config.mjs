@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   darkMode: ["class"],
   content: [
@@ -11,6 +12,11 @@ export default {
       typography: {
         DEFAULT: {
           css: {
+            ol: {
+              color: "inherit", // Apply color to list items
+             
+            },
+          
             // Adjust heading sizes
             h1: {
               fontSize: "2.5rem", // Adjust as needed
@@ -38,6 +44,22 @@ export default {
                 color: '#ff4500', // Change color on hover
               },
 						},
+
+            blockquote : {
+              color : 'inherit',
+            },
+           strong : {
+              color : 'inherit',
+            },
+           ol : {
+              color : 'inherit',
+            },
+           ul : {
+              color : 'inherit',
+            },
+         
+
+
             // Customizing code blocks
             pre: {
               backgroundColor: "#161b22", // Dark background
@@ -87,7 +109,11 @@ export default {
       colors: {
         dark: "#171717", // Custom dark gray color
         lightgray: "#404040", // Custom medium gray color
-       
+        secondary : "#252525",
+        tertiary : "#fef7ed",
+        white : "#f8f9fa",
+        mediumDark: "#a1a1a1"
+
       },
       borderRadius: {
         lg: "var(--radius)",

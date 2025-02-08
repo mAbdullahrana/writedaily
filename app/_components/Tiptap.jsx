@@ -1,13 +1,17 @@
+"use client";
+
 import Highlight from "@tiptap/extension-highlight";
 import TextAlign from "@tiptap/extension-text-align";
 import Typography from "@tiptap/extension-typography";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useState } from "react";
-import MenuBar from "./TextMenuBar";
+
 import Link from "@tiptap/extension-link";
 import { Color } from "@tiptap/extension-color";
 import TextStyle from "@tiptap/extension-text-style";
+import FloatingTextMenuBar from "./FloatingTextMenuBar";
+import TextMenuBar from "./TextMenuBar";
 
 const init = `
       <h1 style="text-align:center">
@@ -26,24 +30,18 @@ const init = `
         But <s>girls</s>devs, they wanna have fun<br>
         Oh devs just want to have
       </p>
-      <p style="text-align:center">
-        That’s all they really want<br>
-        Some fun<br>
-        When the working day is done<br>
-        Oh devs, they wanna have fun<br>
-        Oh devs just wanna have fun<br>
-        (devs, they wanna, wanna have fun, devs wanna have)
-      </p>
-       http://example.com 
     `;
 
-export default function Home() {
+export default function TipTap() {
   const [htmlContent, setHtmlContent] = useState(init);
+ 
+
+
   const editor = useEditor({
     editorProps: {
       attributes: {
         class:
-          "prose m-5 p-4 focus:outline-none text-white bg-lightgray transition-colors duration-300 max-w-4xl mx-auto rounded-xl ",
+          "prose m-5 p-4 focus:outline-none text-white bg-lightgray transition-colors duration-300 max-w-3xl mx-auto rounded-xl h-screen",
       },
     },
     extensions: [
@@ -52,7 +50,7 @@ export default function Home() {
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
-      Highlight,
+      Highlight.configure({ multicolor: true }),
       Typography,
       Link,
       TextStyle,
@@ -60,17 +58,20 @@ export default function Home() {
     ],
     content: htmlContent,
   });
+
+  
   function getHtmlFromEditor() {
     const html = editor.getHTML();
     setHtmlContent(html);
-    console.log(typeof html); // Log it to the console
+    console.log(html); // Log it to the console
   }
 
   return (
     <>
+      <TextMenuBar editor={editor} />
+      <FloatingTextMenuBar editor={editor} />
+      <EditorContent editor={editor} />
       <div className="flex flex-wrap gap-2 ">
-        {/* Your existing buttons */}
-        {/* Add a button to get HTML content */}
         <button
           onClick={getHtmlFromEditor}
           className="px-3 py-2 rounded bg-green-500 text-white hover:bg-green-600 transition"
@@ -78,8 +79,6 @@ export default function Home() {
           Get HTML
         </button>
       </div>
-      <MenuBar editor={editor} />
-      <EditorContent editor={editor} />
     </>
   );
 }
