@@ -25,71 +25,92 @@ import {
 } from "lucide-react";
 
 // Reusable button component styled with Tailwind CSS
-const MenuButton = ({ onClick, isActive, icon: Icon, title }) => {
+function MenuButton({ onClick, isActive, icon: Icon, title }) {
   return (
     <button
       onClick={onClick}
       title={title}
-      className={`rounded p-1 transition-colors duration-200 focus:outline-none $
-        text-white
-       `}
+      className="rounded p-1 transition-colors duration-200 focus:outline-none text-white"
     >
-      <Icon className="h-4 " />
+      <Icon className="h-4" />
     </button>
   );
-};
+}
 
 function FloatingTextMenuBar({ editor }) {
   const toolbarRef = useRef(null);
+  const defaultPosition = { top: "-9999px", left: "-9999px" };
   const [floatingStyle, setFloatingStyle] = useState({
     opacity: 0,
-    top: 0,
-    left: 0,
+    top: defaultPosition.top,
+    left: defaultPosition.left,
   });
 
-  // Updating toolbar position based on the current selection.
   const updateToolbar = useCallback(() => {
     const domSelection = window.getSelection();
     if (!domSelection || !domSelection.rangeCount) {
-      setFloatingStyle((prev) => ({ ...prev, opacity: 0 }));
+      setFloatingStyle({
+        opacity: 0,
+        top: defaultPosition.top,
+        left: defaultPosition.left,
+      });
       return;
     }
     const range = domSelection.getRangeAt(0);
-
-    if (range.collapsed) {
-      setFloatingStyle((prev) => ({ ...prev, opacity: 0 }));
+    if (range.collapsed || !range.toString().trim()) {
+      setFloatingStyle({
+        opacity: 0,
+        top: defaultPosition.top,
+        left: defaultPosition.left,
+      });
       return;
     }
-
     const rect = range.getBoundingClientRect();
     const toolbarHeight = toolbarRef.current
       ? toolbarRef.current.offsetHeight
       : 0;
-
-    const top = rect.bottom + window.scrollY + 8;
+    // Position the toolbar below the selection.
+    const top = rect.bottom + window.scrollY + 8; // 8px offset
     const left =
       rect.left +
       window.scrollX +
       rect.width / 2 -
       (toolbarRef.current ? toolbarRef.current.offsetWidth / 2 : 0);
 
+    // Update the toolbar instantly (no transition on top/left or opacity)
     setFloatingStyle({ opacity: 1, top, left });
-  }, []);
+  }, [defaultPosition]);
 
   useEffect(() => {
     if (!editor) return;
-
-    document.addEventListener("selectionchange", updateToolbar);
+    editor.on("selectionUpdate", updateToolbar);
     return () => {
-      document.removeEventListener("selectionchange", updateToolbar);
+      editor.off("selectionUpdate", updateToolbar);
     };
   }, [editor, updateToolbar]);
+
+  useEffect(() => {
+    const hideToolbarOnClick = () => {
+      const selection = window.getSelection();
+      if (!selection || selection.toString().trim() === "") {
+        setFloatingStyle({
+          opacity: 0,
+          top: defaultPosition.top,
+          left: defaultPosition.left,
+        });
+      }
+    };
+
+    document.addEventListener("click", hideToolbarOnClick);
+    return () => {
+      document.removeEventListener("click", hideToolbarOnClick);
+    };
+  }, [defaultPosition]);
 
   if (!editor) {
     return null;
   }
 
-  // Button configurations for the text menu
   const buttons = [
     {
       title: "Heading 1",
@@ -169,7 +190,6 @@ function FloatingTextMenuBar({ editor }) {
       active: () => editor.isActive({ textAlign: "justify" }),
       onClick: () => editor.chain().focus().setTextAlign("justify").run(),
     },
-
     {
       title: "Ordered List",
       icon: ListOrdered,
@@ -226,12 +246,10 @@ function FloatingTextMenuBar({ editor }) {
         top: floatingStyle.top,
         left: floatingStyle.left,
         opacity: floatingStyle.opacity,
-        // Add a 100ms delay to the transitions for a smoother "pop out" effect
-        transition:
-          "opacity 0.2s ease 0.1s, top 0.2s ease 0.1s, left 0.2s ease 0.1s",
+        // No transition: position and opacity update instantly.
         zIndex: 10,
       }}
-      className="p-2 bg-secondary mx-2 rounded-xl shadow flex flex-wrap  justify-center items-center"
+      className="p-2 bg-secondary mx-2 rounded-xl shadow flex flex-wrap justify-center items-center"
     >
       {buttons.map(({ title, icon, active, onClick }, index) => (
         <MenuButton

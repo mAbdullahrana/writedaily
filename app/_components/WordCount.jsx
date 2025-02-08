@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useWordCount } from "../_hooks/useWordCount";
+import Tooltip from "./Tooltip";
 
 export default function WordCount({ editor }) {
   const [hovered, setHovered] = useState(false);
@@ -62,10 +63,3 @@ export default function WordCount({ editor }) {
   );
 }
 
-function Tooltip({ children }) {
-  return (
-    <div className="px-3 py-2 bg-secondary text-white text-sm rounded-xl shadow-lg max-w-[20rem] absolute right-0 whitespace-nowrap overflow-hidden">
-      {children}
-    </div>
-  );
-}

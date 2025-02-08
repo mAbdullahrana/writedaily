@@ -14,28 +14,10 @@ import FloatingTextMenuBar from "./FloatingTextMenuBar";
 import TextMenuBar from "./TextMenuBar";
 
 const init = `
-      <h1 style="text-align:center">
-        Devs Just Want to Have Fun by Cyndi Lauper
-      </h1>
-      <p style="text-align:center">
-        I come home in the morning light<br>
-        My mother says, <mark>“When you gonna live your life right?”</mark><br>
-        Oh mother dear we’re not the fortunate ones<br>
-        And devs, they wanna have fun<br>
-        Oh devs just want to have fun</p>
-      <p style="text-align:center">
-        The phone rings in the middle of the night<br>
-        My father yells, "What you gonna do with your life?"<br>
-        Oh daddy dear, you know you’re still number one<br>
-        But <s>girls</s>devs, they wanna have fun<br>
-        Oh devs just want to have
-      </p>
     `;
 
 export default function TipTap() {
   const [htmlContent, setHtmlContent] = useState(init);
- 
-
 
   const editor = useEditor({
     editorProps: {
@@ -57,9 +39,9 @@ export default function TipTap() {
       Color,
     ],
     content: htmlContent,
+    immediatelyRender: false, // Important!
   });
 
-  
   function getHtmlFromEditor() {
     const html = editor.getHTML();
     setHtmlContent(html);
@@ -74,7 +56,7 @@ export default function TipTap() {
       <div className="flex flex-wrap gap-2 ">
         <button
           onClick={getHtmlFromEditor}
-          className="px-3 py-2 rounded bg-green-500 text-white hover:bg-green-600 transition"
+          className="px-3 py-2 rounded bg-primaryButton text-white  hover:bg-[#E6B95C] transition"
         >
           Get HTML
         </button>

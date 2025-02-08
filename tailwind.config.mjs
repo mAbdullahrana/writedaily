@@ -14,9 +14,8 @@ export default {
           css: {
             ol: {
               color: "inherit", // Apply color to list items
-             
             },
-          
+
             // Adjust heading sizes
             h1: {
               fontSize: "2.5rem", // Adjust as needed
@@ -35,30 +34,28 @@ export default {
               fontSize: "1.095rem",
               color: "inherit",
             },
-						a: {
-              color: '#1e90ff', // Blue color
-              textDecoration: 'underline',
-              cursor: 'pointer',
-              transition: 'color 0.2s ease-in-out',
-              '&:hover': {
-                color: '#ff4500', // Change color on hover
+            a: {
+              color: "#1e90ff", // Blue color
+              textDecoration: "underline",
+              cursor: "pointer",
+              transition: "color 0.2s ease-in-out",
+              "&:hover": {
+                color: "#ff4500", // Change color on hover
               },
-						},
+            },
 
-            blockquote : {
-              color : 'inherit',
+            blockquote: {
+              color: "inherit",
             },
-           strong : {
-              color : 'inherit',
+            strong: {
+              color: "inherit",
             },
-           ol : {
-              color : 'inherit',
+            ol: {
+              color: "inherit",
             },
-           ul : {
-              color : 'inherit',
+            ul: {
+              color: "inherit",
             },
-         
-
 
             // Customizing code blocks
             pre: {
@@ -80,9 +77,6 @@ export default {
               borderRadius: "0.25rem",
               fontSize: "0.875rem",
             },
-
-           
-     
           },
         },
         // Optionally, create a custom variant if needed:
@@ -90,15 +84,15 @@ export default {
           css: {
             h1: {
               fontSize: "1.25rem",
-							 color: "#f7f5f5",
+              color: "#f7f5f5",
             },
             h2: {
               fontSize: "1.125rem",
-							color: "inherit",
+              color: "inherit",
             },
             h3: {
               fontSize: "1rem",
-							color: "inherit",
+              color: "inherit",
             },
             p: {
               fontSize: "0.75rem",
@@ -107,13 +101,18 @@ export default {
         },
       },
       colors: {
-        dark: "#171717", // Custom dark gray color
-        lightgray: "#404040", // Custom medium gray color
-        secondary : "#252525",
-        tertiary : "#fef7ed",
-        white : "#f8f9fa",
-        mediumDark: "#a1a1a1"
-
+        dark: "#171717",
+        lightgray: "#404040",
+        secondary: "#252525",
+        tertiary: "#fef7ed",
+        white: "#f8f9fa",
+        mediumDark: "#a1a1a1",
+        primaryButton: "#FF6B35",
+        primaryButtonHover: "#E65A2B",
+        secondaryButton: "#2EC4B6",
+        secondaryButtonHover: "#26A89C",
+        accentButton: "#FFD166",
+        accentButtonHover: "#E6B95C",
       },
       borderRadius: {
         lg: "var(--radius)",
