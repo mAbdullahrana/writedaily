@@ -1,8 +1,8 @@
 import { Check } from "lucide-react";
 import { useState } from "react";
 
-function NoteBookName() {
-  const [name, setName] = useState("Untitled");
+function NoteBookName({entrie}) {
+  const [name, setName] = useState(entrie?.title);
   const [isToggle, setIsToggle] = useState(false);
   function handleToggle(e) {
     e.preventDefault();

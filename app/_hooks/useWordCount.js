@@ -1,6 +1,6 @@
 const { useState, useEffect } = require("react");
 
-export function useWordCount({editor}) {
+export function useWordCount(editor) {
   const [wordCount, setWordCount] = useState(0);
 
 
