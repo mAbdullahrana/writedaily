@@ -16,30 +16,30 @@ export const metadata = {
 export default async function Home() {
   const entrie = await getEntrie();
 
-  // Generate HTML from JSON
-  const htmlContent = generateHTML(
-    {
-      type: "doc",
-      content: [
-        {
-          type: "paragraph",
-          content: entrie.content || "start writing...",
-        },
-      ],
-    },
-    [
-      StarterKit,
+  // Generating HTML from JSON
+  const htmlContent = generateHTML(entrie?.content || defaultContent, [
+    StarterKit,
 
-      TextAlign.configure({
-        types: ["heading", "paragraph"],
-      }),
-      Highlight.configure({ multicolor: true }),
-      Typography,
-      Link,
-      TextStyle,
-      Color,
-    ]
-  );
+    TextAlign.configure({
+      types: ["heading", "paragraph"],
+    }),
+    Highlight.configure({ multicolor: true }),
+    Typography,
+    Link,
+    TextStyle,
+    Color,
+  ]);
 
   return <Tiptap htmlContent={htmlContent} entrie={entrie} />;
 }
+
+// Create a proper default JSON structure
+// const defaultContent = {
+//   type: "doc",
+//   content: [
+//     {
+//       type: "paragraph",
+//       content: [{ type: "text", text: "Start writing..." }],
+//     },
+//   ],
+// };

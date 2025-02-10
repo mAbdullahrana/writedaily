@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* globals.css or your CSS file */
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #a1a1a1; /* Gray text */
+  pointer-events: none;
+  height: 0;
+  font-style: italic;
+}

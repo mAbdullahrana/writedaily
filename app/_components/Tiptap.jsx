@@ -11,8 +11,14 @@ import Link from "@tiptap/extension-link";
 import TextStyle from "@tiptap/extension-text-style";
 import FloatingTextMenuBar from "./FloatingTextMenuBar";
 import TextMenuBar from "./TextMenuBar";
+import Placeholder from "@tiptap/extension-placeholder";
+
+import { WRITING_QUOTES } from "@/lib/quotes";
 
 export default function TipTap({ htmlContent, entrie }) {
+  const randomQuote =
+    WRITING_QUOTES[Math.floor(Math.random() * WRITING_QUOTES.length)];
+
   const editor = useEditor({
     editorProps: {
       attributes: {
@@ -22,15 +28,18 @@ export default function TipTap({ htmlContent, entrie }) {
     },
     extensions: [
       StarterKit,
-
-      TextAlign.configure({
-        types: ["heading", "paragraph"],
-      }),
-      Highlight.configure({ multicolor: true }),
       Typography,
       Link,
       TextStyle,
       Color,
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
+      Highlight.configure({ multicolor: true }),
+      Placeholder.configure({
+        placeholder: `"${randomQuote}"`,
+        showOnlyWhenEditable: true,
+      }),
     ],
     content: htmlContent,
     immediatelyRender: false,
