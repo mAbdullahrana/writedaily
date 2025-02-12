@@ -17,7 +17,7 @@ export default async function Home() {
   const entrie = await getEntrie();
 
   // Generating HTML from JSON
-  const htmlContent = generateHTML(entrie?.content || defaultContent, [
+  const content = generateHTML(entrie?.content || defaultContent, [
     StarterKit,
 
     TextAlign.configure({
@@ -30,7 +30,7 @@ export default async function Home() {
     Color,
   ]);
 
-  return <Tiptap htmlContent={htmlContent} entrie={entrie} />;
+  return <Tiptap content={content} entrie={entrie} />;
 }
 
 // Create a proper default JSON structure

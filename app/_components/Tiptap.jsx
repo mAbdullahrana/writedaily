@@ -1,21 +1,24 @@
 "use client";
 
+import { Color } from "@tiptap/extension-color";
 import Highlight from "@tiptap/extension-highlight";
+import Link from "@tiptap/extension-link";
+import Placeholder from "@tiptap/extension-placeholder";
 import TextAlign from "@tiptap/extension-text-align";
+import TextStyle from "@tiptap/extension-text-style";
 import Typography from "@tiptap/extension-typography";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
-import { Color } from "@tiptap/extension-color";
-import Link from "@tiptap/extension-link";
-import TextStyle from "@tiptap/extension-text-style";
+import { updateEntrie } from "@/lib/actions";
+import { WRITING_QUOTES } from "@/lib/quotes";
+import useAutosave from "../_hooks/useAutoSave";
 import FloatingTextMenuBar from "./FloatingTextMenuBar";
 import TextMenuBar from "./TextMenuBar";
-import Placeholder from "@tiptap/extension-placeholder";
+import { AUTOSAVE_TIME } from "@/lib/constants";
 
-import { WRITING_QUOTES } from "@/lib/quotes";
 
-export default function TipTap({ htmlContent, entrie }) {
+export default function TipTap({ content, entrie }) {
   const randomQuote =
     WRITING_QUOTES[Math.floor(Math.random() * WRITING_QUOTES.length)];
 
@@ -32,18 +35,18 @@ export default function TipTap({ htmlContent, entrie }) {
       Link,
       TextStyle,
       Color,
-      TextAlign.configure({
-        types: ["heading", "paragraph"],
-      }),
+      TextAlign.configure({ types: ["heading", "paragraph"] }),
       Highlight.configure({ multicolor: true }),
       Placeholder.configure({
         placeholder: `"${randomQuote}"`,
         showOnlyWhenEditable: true,
       }),
     ],
-    content: htmlContent,
+    content: content,
     immediatelyRender: false,
   });
+  
+  useAutosave(editor, updateEntrie, AUTOSAVE_TIME);
 
   return (
     <>
@@ -53,21 +56,25 @@ export default function TipTap({ htmlContent, entrie }) {
     </>
   );
 }
-{
-  /* <div className="flex flex-wrap gap-2 ">
-        <button
-          onClick={getHtmlFromEditor}
-          className="px-3 py-2 rounded bg-primaryButton text-white  hover:bg-[#E6B95C] transition"
-        >
-          Get HTML
-        </button>
-      </div> */
-}
 
-// function getHtmlFromEditor() {
-//   const html = editor.getHTML();
-//   getEntrie().then((data) => console.log(data));
-//   setHtmlContent(html);
-//   console.log(html); // Log it to the console
-//   console.log(editor.getJSON()); // Log it to the console
+
+
+
+// {
+//   /* <div className="flex flex-wrap gap-2 ">
+//         <button
+//           onClick={getHtmlFromEditor}
+//           className="px-3 py-2 rounded bg-primaryButton text-white  hover:bg-[#E6B95C] transition"
+//         >
+//           Get HTML
+//         </button>
+//       </div> */
 // }
+
+// // function getHtmlFromEditor() {
+// //   const html = editor.getHTML();
+// //   getEntrie().then((data) => console.log(data));
+// //   setHtmlContent(html);
+// //   console.log(html); // Log it to the console
+// //   console.log(editor.getJSON()); // Log it to the console
+// // }
