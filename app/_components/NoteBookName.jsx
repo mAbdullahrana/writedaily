@@ -8,7 +8,7 @@ function NoteBookName({ entrie }) {
 
   function handleUpdateName(e) {
     e.preventDefault();
-    updateNoteBookTitle(title);
+    updateNoteBookTitle({title , entrieID : entrie?.id});
     // const data = await getAllEntrie();
 
     // console.log(data);

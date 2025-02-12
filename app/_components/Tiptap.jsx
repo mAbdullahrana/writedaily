@@ -18,7 +18,7 @@ import TextMenuBar from "./TextMenuBar";
 import { AUTOSAVE_TIME } from "@/lib/constants";
 
 
-export default function TipTap({ content, entrie }) {
+export default function TipTap({ content, entrie  }) {
   const randomQuote =
     WRITING_QUOTES[Math.floor(Math.random() * WRITING_QUOTES.length)];
 
@@ -46,7 +46,7 @@ export default function TipTap({ content, entrie }) {
     immediatelyRender: false,
   });
   
-  useAutosave(editor, updateEntrie, AUTOSAVE_TIME);
+  useAutosave({editor,  entrie});
 
   return (
     <>

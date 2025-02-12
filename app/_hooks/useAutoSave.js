@@ -1,12 +1,9 @@
+import { updateEntrie } from "@/lib/actions";
 import { AUTOSAVE_TIME } from "@/lib/constants";
 import { useEffect, useState } from "react";
 
-export default function useAutosave(
-  editor,
-  updateFunction,
-  debounceDelay = AUTOSAVE_TIME
-) {
-  // Store the JSON string of the last saved content
+export default function useAutosave({ editor, entrie }) {
+  // Storing the JSON string of the last saved content
   const [lastSavedContent, setLastSavedContent] = useState("");
 
   useEffect(() => {
@@ -24,13 +21,13 @@ export default function useAutosave(
       if (currentContentStr !== lastSavedContent) {
         timeoutId = setTimeout(async () => {
           try {
-            await updateFunction(currentContent);
+            await updateEntrie({ currentContent, entrieID: entrie.id });
             setLastSavedContent(currentContentStr);
             console.log("Auto-saved at", new Date().toLocaleTimeString());
           } catch (error) {
             console.error("Autosave error:", error);
           }
-        }, debounceDelay);
+        }, AUTOSAVE_TIME);
       }
     };
 
@@ -42,7 +39,7 @@ export default function useAutosave(
       editor.off("update", handleUpdate);
       clearTimeout(timeoutId);
     };
-  }, [editor, updateFunction, debounceDelay, lastSavedContent]);
+  }, [editor, entrie.id, lastSavedContent]);
 
   return lastSavedContent;
 }
