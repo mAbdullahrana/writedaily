@@ -5,12 +5,12 @@ import CreateFirstNoteBook from "../_components/CreateFirstNoteBook";
 import { Plus } from "lucide-react";
 
 async function page() {
-  // const entries = await getAllEntrie("1c6e20b5-8e3a-433b-a50c-3e2071d57c09");
+  const entries = await getAllEntrie("1c6e20b5-8e3a-433b-a50c-3e2071d57c09");
 
   return (
     <>
       <h2 className="text-2xl font-bold ">Recent Writings</h2>
-      {false ? (
+      {entries ? (
         <>
           <div className="">
             <div className="mt-4 shadow ">
@@ -22,7 +22,7 @@ async function page() {
               ))}
             </div>
 
-            <AddNoteBook as='logo'>
+            <AddNoteBook as="logo">
               <Plus />
             </AddNoteBook>
           </div>
