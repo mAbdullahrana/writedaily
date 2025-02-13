@@ -2,9 +2,12 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Link from "next/link";
+
+import { ThemeProvider } from "./ThemeProvider";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 import Sidebar from "./Sidebar";
-import Footer from "./Footer";
 
 export default function ConditionalLayout({ children }) {
   const pathname = usePathname();
@@ -21,14 +24,19 @@ export default function ConditionalLayout({ children }) {
 
   // Otherwise, render the full layout.
   return (
-    <div className="flex flex-col min-h-screen text-white">
-      {/* Main Content */}
-      <main className="container mx-auto p-6 flex-grow flex flex-col md:flex-row gap-6">
-        <Sidebar />
+    <div className="flex h-screen">
+      {/* Left Sidebar - Fixed width and 1/2 height */}
+      <Sidebar />
 
-        <section className="w-full md:w-3/4 bg-secondary p-4 rounded-xl shadow">
-          {children}
-        </section>
+      {/* Main Content Area */}
+      <main className="flex-1 ml-64 pl-8">
+        {/* ml-64 matches sidebar width */}
+        <div className="h-screen flex flex-col">
+          {/* Content Header */}
+
+          {/* Scrollable Content Area */}
+          <div className="flex-1 overflow-y-auto pr-8 py-6">{children}</div>
+        </div>
       </main>
     </div>
   );

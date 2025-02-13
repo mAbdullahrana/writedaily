@@ -1,37 +1,19 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import Navigation from "./Navigation";
+import Logo from "./Logo";
+import Feedback from "./Feedback";
 
-// Sidebar Component
+
 export default function Sidebar() {
   return (
-    <aside className="w-full md:w-1/4 bg-lightgray p-4 rounded-xl shadow">
-      <h2 className="text-xl font-semibold mb-4">Navigation</h2>
-      <ul className="space-y-2">
-        <li>
-          <Link
-            href="/write"
-            className="hover:text-primaryButton transition-colors"
-          >
-            Recent Notebooks
-          </Link>
-        </li>
-        <li>
-          <a
-            href="/favorites"
-            className="hover:text-primaryButton transition-colors"
-          >
-            Favorites
-          </a>
-        </li>
-        <li>
-          <a
-            href="/tags"
-            className="hover:text-primaryButton transition-colors"
-          >
-            Tags
-          </a>
-        </li>
-      </ul>
-    </aside>
+    <div className="flex flex-col justify-between items-start">
+      <aside className="w-[12.5rem] mt-4 rounded-r-xl h-[78vh] bg-lightgray flex flex-col border-r border-lightgray ">
+        <div className="px-4 py-4 flex  flex-col items-start flex-1">
+          <Logo />
+          <Navigation />
+          
+        </div>
+      </aside>
+      <Feedback />
+    </div>
   );
 }

@@ -52,7 +52,7 @@ export const metadata = {
 };
 export default async function Home() {
   return (
-    <div className="p-6">
+    <div>
       <h1 className="text-3xl font-bold">Welcome to WriteDaily</h1>
       <p>Your creative journey starts here.</p>
     </div>

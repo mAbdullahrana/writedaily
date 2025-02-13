@@ -1,7 +1,6 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-
 
 // export default function RootLayout({ children }) {
 //   return (
@@ -38,16 +37,22 @@ import Link from "next/link";
 //   );
 // }
 
-
 // app/layout.js
 import "./globals.css";
 import ConditionalLayout from "./_components/ConditionalLayout";
+import { cn } from "@/lib/utils";
 
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className="bg-dark">
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen bg-dark text-white antialiased",
+          inter.className
+        )}
+      >
         <ConditionalLayout>{children}</ConditionalLayout>
       </body>
     </html>
