@@ -15,7 +15,7 @@ function Navigation() {
   return (
     <nav className="flex flex-col justify-between">
       <div className="space-y-2 flex flex-col items-start px-4">
-        <Button as="link" to="/write">
+        <Button as="link" to="/pages">
           <p className="flex gap-2">
             <NotebookPenIcon />
             Recent

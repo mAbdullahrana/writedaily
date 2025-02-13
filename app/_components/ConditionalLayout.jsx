@@ -29,11 +29,9 @@ export default function ConditionalLayout({ children }) {
       <Sidebar />
 
       {/* Main Content Area */}
-      <main className="flex-1 ml-64 pl-8">
+      <main className="flex-1  pl-8">
         {/* ml-64 matches sidebar width */}
-        <div className="h-screen flex flex-col">
-          {/* Content Header */}
-
+        <div className="h-screen">
           {/* Scrollable Content Area */}
           <div className="flex-1 overflow-y-auto pr-8 py-6">{children}</div>
         </div>

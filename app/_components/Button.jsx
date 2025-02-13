@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-function Button({ as, to, children }) {
+function Button({ as, to, children, onClick }) {
   switch (as) {
     case "link":
       return (
@@ -11,7 +11,10 @@ function Button({ as, to, children }) {
       break;
     case "primary":
       return (
-        <button className="bg-primaryButton text-white hover:bg-primaryButtonHover text-sm transition py-1 px-6 rounded-3xl">
+        <button
+          onClick={onClick}
+          className="bg-primaryButton text-white hover:bg-primaryButtonHover text-sm transition py-1 px-6 rounded-3xl"
+        >
           {children}
         </button>
       );
