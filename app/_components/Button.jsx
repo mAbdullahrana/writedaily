@@ -13,7 +13,7 @@ function Button({ as, to, children, onClick }) {
       return (
         <button
           onClick={onClick}
-          className="bg-primaryButton text-white hover:bg-primaryButtonHover text-sm transition py-1 px-6 rounded-3xl"
+          className="bg-primaryButton text-white hover:bg-primaryButtonHover text-sm transition py-1 px-4 rounded-3xl flex gap-2 items-center justify-center"
         >
           {children}
         </button>

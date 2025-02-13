@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function BackButton() {
   return (
-    <Link className="hover:text-white" href="/">
+    <Link className="hover:text-white" href="/pages">
       <ArrowLeft />
     </Link>
   );
