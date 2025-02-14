@@ -26,7 +26,7 @@ export default function ConditionalLayout({ children }) {
   return (
     <div className="flex h-screen">
       {/* Left Sidebar - Fixed width and 1/2 height */}
-      <Sidebar />
+      <Sidebar pathname = {pathname}/>
 
       {/* Main Content Area */}
       <main className="flex-1  pl-8">

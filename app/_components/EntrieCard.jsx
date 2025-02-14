@@ -1,3 +1,4 @@
+import { formatTimestamp } from "@/lib/helpers";
 import Link from "next/link";
 
 function EntrieCard({ entrie }) {
@@ -12,8 +13,8 @@ function EntrieCard({ entrie }) {
       </div>
       <div className="flex gap-2 text-[0.8rem] text-mediumDark font-light">
         <p>{wordCount} Words</p>
-        <p>| Created {created_at}</p>
-        <p>| Created {updated_at}</p>
+        <p>| Created {formatTimestamp(created_at)}</p>
+        <p>| Updated {formatTimestamp(updated_at)}</p>
       </div>
     </Link>
   );
