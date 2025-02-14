@@ -3,10 +3,14 @@ import EntrieCard from "../_components/EntrieCard";
 import AddNoteBook from "../_components/AddNoteBook";
 import CreateFirstNoteBook from "../_components/CreateFirstNoteBook";
 import { Plus } from "lucide-react";
-import { unstable_noStore } from "next/cache";
+import { unstable_noStore as noStore } from "next/cache";
 
+export const metadata = {
+  title: "Pages / DailyWrite",
+  description: "Build Your Daily writing habbit with DailyWrite",
+};
 async function Page() {
-  unstable_noStore();
+  noStore();
 
   const entries = await getAllEntrie("1c6e20b5-8e3a-433b-a50c-3e2071d57c09");
 

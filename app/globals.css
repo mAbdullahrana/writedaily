@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* globals.css or your CSS file */
 .tiptap p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
@@ -67,11 +66,40 @@
     --chart-5: 340 75% 55%;
   }
 }
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .spinner {
+    margin: 3.2rem auto 1.6rem;
+    width: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid #a1a1a1;
+    border-right-color: #ff6b35;
+    animation: rotate 1s infinite linear;
+  }
+
+  .spinner-mini {
+    margin: 0;
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid #a1a1a1;
+    border-right-color: transparent;
+    animation: rotate 1s infinite linear;
+  }
+
+  @keyframes rotate {
+    to {
+      transform: rotate(1turn);
+    }
   }
 }

@@ -25,7 +25,7 @@ function Button({ as, to, children, onClick }) {
   }
 
   return (
-    <button className="hover:text-primaryButton  transition py-1.5">
+    <button onClick={onClick} className="hover:text-primaryButton  transition py-1.5">
       {children}
     </button>
   );

@@ -25,14 +25,9 @@ export default function ConditionalLayout({ children }) {
   // Otherwise, render the full layout.
   return (
     <div className="flex h-screen">
-      {/* Left Sidebar - Fixed width and 1/2 height */}
-      <Sidebar pathname = {pathname}/>
-
-      {/* Main Content Area */}
-      <main className="flex-1  pl-8">
-        {/* ml-64 matches sidebar width */}
+      <Sidebar pathname={pathname} />
+      <main className="flex-1 ml-[12.5rem] pl-8">
         <div className="h-screen">
-          {/* Scrollable Content Area */}
           <div className="flex-1 overflow-y-auto pr-8 py-6">{children}</div>
         </div>
       </main>

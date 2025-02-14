@@ -1,6 +1,3 @@
-
-
-
 import {
   ChartNoAxesCombined,
   LibraryBig,
@@ -42,14 +39,18 @@ const buttonsData = [
     label: "Settings",
     as: "link",
   },
+  {
+    to: "/signout",
+    icon: <LogOut />,
+    label: "SignOut",
+    as: "link",
+  },
 ];
 
-function Navigation({pathname}) {
-
-
+function Navigation({ pathname }) {
   return (
-    <nav className="flex flex-col justify-between">
-      <div className="space-y-2 flex flex-col items-start px-4">
+    <nav className="space-y-2 flex flex-col items-start px-4">
+      <>
         {buttonsData.map((button, index) => (
           <Button key={index} as="link" to={button.to}>
             <p
@@ -62,13 +63,7 @@ function Navigation({pathname}) {
             </p>
           </Button>
         ))}
-      </div>
-
-      <div className="mt-32 flex items-end">
-        <Button>
-          <LogOut />
-        </Button>
-      </div>
+      </>
     </nav>
   );
 }
