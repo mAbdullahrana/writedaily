@@ -1,19 +1,18 @@
 import { getEntrie } from "@/lib/actions";
 
+import Color from "@tiptap/extension-color";
+import Highlight from "@tiptap/extension-highlight";
+import Link from "@tiptap/extension-link";
+import TextAlign from "@tiptap/extension-text-align";
+import TextStyle from "@tiptap/extension-text-style";
+import Typography from "@tiptap/extension-typography";
 import { generateHTML } from "@tiptap/html";
 import StarterKit from "@tiptap/starter-kit";
-import TextAlign from "@tiptap/extension-text-align";
-import Highlight from "@tiptap/extension-highlight";
-import Typography from "@tiptap/extension-typography";
-import Link from "@tiptap/extension-link";
-import TextStyle from "@tiptap/extension-text-style";
-import Color from "@tiptap/extension-color";
 import TipTap from "../../_components/Tiptap";
 
 export async function generateMetadata({ params }) {
-
   const { entrieID } = await params;
-  const entrie = await getEntrie({ entrieID });;
+  const entrie = await getEntrie({ entrieID });
   const { title } = entrie;
   return {
     title: `${title} / WriteDaily`,
@@ -21,7 +20,6 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  
 
   const { entrieID } = await params;
 

@@ -2,31 +2,42 @@
 import { Plus } from "lucide-react";
 import Button from "./Button";
 import { createEntrie } from "@/lib/actions";
+import { useTransition } from "react";
+import SpinnerMini from "./SpinnerMini";
 
 function AddNoteBook({ children, as }) {
-  const handleCreateEntrie = async () => {
-    try {
-      await createEntrie();
-    } catch (error) {
-      console.error("Error creating entry:", error);
-    }
-  };
+  const [isPending, startTransition] = useTransition();
+  function handleCreateEntrie() {
+    startTransition(() => createEntrie());
+  }
 
   if (as === "button") {
     return (
       <div className="">
-        <Button onClick={handleCreateEntrie} as="primary">
-          {children}
-        </Button>
+        {!isPending ? (
+          <Button onClick={handleCreateEntrie} as="primary">
+            {children}
+          </Button>
+        ) : (
+          <span className="mx-auto">
+            <SpinnerMini />
+          </span>
+        )}
       </div>
     );
   }
 
   return (
     <div className="fixed bottom-4 right-4 z-10">
-      <Button onClick={handleCreateEntrie} as="primary">
-        {children}
-      </Button>
+      {!isPending ? (
+        <Button onClick={handleCreateEntrie} as="primary">
+          {children}
+        </Button>
+      ) : (
+        <span className="mx-auto">
+          <SpinnerMini />
+        </span>
+      )}
     </div>
   );
 }

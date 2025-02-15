@@ -92,7 +92,7 @@
     width: 20px;
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 2px solid #a1a1a1;
+    border: 2px solid #ff6b35;
     border-right-color: transparent;
     animation: rotate 1s infinite linear;
   }

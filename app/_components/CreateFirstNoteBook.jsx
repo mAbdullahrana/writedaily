@@ -2,6 +2,7 @@ import { Plus } from "lucide-react";
 import AddNoteBook from "./AddNoteBook"; // Ensure the correct path to your AddNoteBook component
 
 function CreateFirstNoteBook() {
+  
   return (
     <div className="flex flex-col items-center  min-h-screen">
       <img
