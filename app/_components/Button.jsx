@@ -20,12 +20,26 @@ function Button({ as, to, children, onClick }) {
       );
 
       break;
+    case "primaryLink":
+      return (
+        <Link
+          href={to}
+          className="bg-primaryButton text-white hover:bg-primaryButtonHover text-sm transition py-1 px-4 rounded-3xl flex gap-2 items-center justify-center"
+        >
+          {children}
+        </Link>
+      );
+
+      break;
     default:
       break;
   }
 
   return (
-    <button onClick={onClick} className="hover:text-primaryButton  transition py-1.5">
+    <button
+      onClick={onClick}
+      className="hover:text-primaryButton  transition py-1.5"
+    >
       {children}
     </button>
   );

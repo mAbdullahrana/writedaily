@@ -10,7 +10,6 @@ function Page() {
   return (
     <>
       <h2 className="text-2xl font-bold">Recent Writings</h2>
-
       <Suspense fallback={<Spinner />}>
         <Entries />
       </Suspense>
