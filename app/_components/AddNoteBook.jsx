@@ -14,30 +14,33 @@ function AddNoteBook({ children, as }) {
   if (as === "button") {
     return (
       <div className="">
-        {!isPending ? (
-          <Button onClick={handleCreateEntrie} as="primary">
-            {children}
-          </Button>
-        ) : (
-          <span className="mx-auto">
-            <SpinnerMini />
+        <Button onClick={handleCreateEntrie} as="primary">
+          <span>
+            {!isPending ? (
+              <Plus />
+            ) : (
+              <span className="mx-auto w-full">
+                <SpinnerMini />
+              </span>
+            )}
           </span>
-        )}
+          <span>New Notebook</span>
+        </Button>
       </div>
     );
   }
 
   return (
     <div className="fixed bottom-4 right-4 z-10">
-      {!isPending ? (
-        <Button onClick={handleCreateEntrie} as="primary">
-          {children}
-        </Button>
-      ) : (
-        <span className="mx-auto">
-          <SpinnerMini />
-        </span>
-      )}
+      <Button onClick={handleCreateEntrie} as="primary">
+        {!isPending ? (
+          children
+        ) : (
+          <span className="mx-auto">
+            <SpinnerMini />
+          </span>
+        )}
+      </Button>
     </div>
   );
 }

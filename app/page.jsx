@@ -3,7 +3,7 @@ export const metadata = {
   description: "Build Your Daily writing habbit with DailyWrite",
 };
 export default async function Home() {
-  return (
+return (
     <div>
       <h1 className="text-3xl font-bold">Welcome to WriteDaily</h1>
       <p>Your creative journey starts here.</p>

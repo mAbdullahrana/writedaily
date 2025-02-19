@@ -1,9 +1,5 @@
 function page() {
-  return (
-    <div>
-      Progress
-    </div>
-  )
+  return <div>Progress</div>;
 }
 
-export default page
+export default page;

@@ -20,6 +20,17 @@ function Button({ as, to, children, onClick }) {
       );
 
       break;
+    case "secondary":
+      return (
+        <button
+          onClick={onClick}
+          className="bg-lightgray text-primaryButton border-primaryButton border-[1px] hover:bg-dark text-sm transition py-1 px-4 rounded-3xl flex gap-2 items-center justify-center"
+        >
+          {children}
+        </button>
+      );
+
+      break;
     case "primaryLink":
       return (
         <Link
