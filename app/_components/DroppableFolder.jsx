@@ -37,7 +37,7 @@ export default function DroppableFolder({ folder, entries }) {
               ? // For Uncategorized: grid layout with 3 columns.
                 "grid grid-cols-3 gap-4 auto-rows-min"
               : // For categorized folders: vertical flex layout.
-                "flex flex-col space-y-2"
+                "flex flex-col space-y-2 "
           }
         >
           {entries.map((entry) => (
