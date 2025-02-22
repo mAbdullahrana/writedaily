@@ -2,11 +2,13 @@
 import React from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
+import EntrieCard from "./EntrieCard";
+import Entrie from "./Entrie";
 
-export default function DraggableEntry({ entry }) {
+export default function DraggableEntry({ entrie }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: entry.id,
-    data: { entry },
+    id: entrie.id,
+    data: { entrie },
   });
 
   const style = transform
@@ -19,9 +21,9 @@ export default function DraggableEntry({ entry }) {
       style={style}
       {...listeners}
       {...attributes}
-      className="p-4 mb-2 bg-secondary text-white rounded cursor-move hover:bg-lightgray transition-colors"
+      
     >
-      {entry.title}
+     <Entrie entrie = {entrie} />
     </div>
   );
 }

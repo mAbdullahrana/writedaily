@@ -1,10 +1,8 @@
 "use client";
 import { FolderPlus } from "lucide-react";
 import Button from "./Button";
-import { createFolder } from "@/lib/actions";
-import { useState } from "react";
-import Modal from "./Modal";
 import CreateFolderForm from "./CreateFolderForm";
+import Modal from "./Modal";
 
 function CreateNewFolder() {
   return (

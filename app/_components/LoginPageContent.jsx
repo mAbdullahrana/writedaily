@@ -5,12 +5,16 @@ function LoginPageContent() {
   return (
     <div className="hidden md:flex flex-1 flex-col items-start  bg-dark  justify-center p-8 ">
       <Logo />
-      <div className="text-white max-w-md">
-        <h1 className="text-[2.5rem] font-bold mb-4">Welcome to WriteDaily</h1>
+      <div className="text-white">
+        <h1 className="text-[2.7rem] font-bold mb-4">
+          Build a Daily Writing Habit✍
+        </h1>
         <p className="text-lg mb-8">
-          Your creative journey begins here. Discover inspiration, share your
-          ideas, and build your daily writing habit.
+          Start writing more today. With writing prompts, streaks, custom
+          analytics, text reminders, personalized statistics, and so much more.
         </p>
+
+        <p className="text-lg mb-8">Over 2k Happy Users🎉</p>
       </div>
     </div>
   );

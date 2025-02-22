@@ -63,8 +63,7 @@ export function DragDropLibrary({ entries: initialEntries, folders }) {
   return (
     <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
       <div className="flex flex-col min-h-screen p-6 space-y-6">
-        {/* Categorized folders rendered in a flex row */}
-        <div className="flex items-start gap-6 mb-6 overflow-x-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 items-start">
           {folders.map((folder) => (
             <DroppableFolder
               key={folder.id}
@@ -76,9 +75,10 @@ export function DragDropLibrary({ entries: initialEntries, folders }) {
         {/* Uncategorized folder rendered below, full width */}
         <div className="w-full">
           <DroppableFolder
-            folder={{ id: UNCATEGORIZED, name: "Uncategorized" }}
+            folder={{ id: UNCATEGORIZED, name: "Notebooks" }}
             entries={groupedEntries[UNCATEGORIZED]}
           />
+          
         </div>
       </div>
     </DndContext>
