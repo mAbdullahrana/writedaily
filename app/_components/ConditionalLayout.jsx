@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import Sidebar from "./Sidebar";
+import Link from "next/link";
 
 export default function ConditionalLayout({ children }) {
   const pathname = usePathname();
@@ -18,6 +19,14 @@ export default function ConditionalLayout({ children }) {
     return (
       <div className="bg-dark max-w-full text-white">
         <main>{children}</main>
+      </div>
+    );
+  }
+  if (pathname.startsWith("/login")) {
+    return (
+      <div className="min-h-screen flex">
+        {children}
+        {/* Right Side Content (Login Form) */}
       </div>
     );
   }
