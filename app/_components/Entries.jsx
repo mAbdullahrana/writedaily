@@ -6,7 +6,7 @@ import EntriesList from "./EntriesList";
 
 async function Entries() {
   noStore();
-  const entries = await getAllEntrie("1c6e20b5-8e3a-433b-a50c-3e2071d57c09");
+  const entries = await getAllEntrie();
 
   return (
     <>

@@ -4,8 +4,8 @@ import CreateNewFolder from "../_components/CreateNewFolder";
 import { DragDropLibrary } from "../_components/DragDropLibrary";
 
 export default async function LibraryPage() {
-  const folders = await getAllFolder("1c6e20b5-8e3a-433b-a50c-3e2071d57c09"); 
-  const entries = await getAllEntrie("1c6e20b5-8e3a-433b-a50c-3e2071d57c09"); 
+  const folders = await getAllFolder();
+  const entries = await getAllEntrie();
   return (
     <div>
       <div className="flex justify-between items-center">

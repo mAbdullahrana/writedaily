@@ -1,7 +1,11 @@
-function page() {
+import { auth } from "@/lib/auth"
+
+async function page() {
+
+  const session = await auth()
   return (
     <div>
-      Profile
+      {session?.user.name}
     </div>
   )
 }

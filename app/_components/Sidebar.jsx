@@ -1,6 +1,7 @@
 import Navigation from "./Navigation";
 import Logo from "./Logo";
 import Feedback from "./Feedback";
+import SignOutButton from "./SignOutButton";
 
 export default function Sidebar({ pathname }) {
   return (
@@ -12,6 +13,7 @@ export default function Sidebar({ pathname }) {
         </div>
       </aside>
       <Feedback />
+      <SignOutButton />
     </div>
   );
 }

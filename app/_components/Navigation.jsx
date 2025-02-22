@@ -52,7 +52,7 @@ function Navigation({ pathname }) {
     <nav className="space-y-2 flex flex-col items-start px-4">
       <>
         {buttonsData.map((button, index) => (
-          <Button key={index} as="link" to={button.to}>
+          <Button  key={index} as="link" to={button.to}>
             <p
               className={`flex gap-2 ${
                 pathname === button.to ? "text-primaryButton " : ""
