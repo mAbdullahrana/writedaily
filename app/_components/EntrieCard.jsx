@@ -1,8 +1,7 @@
 "use client";
 import { formatTimestamp } from "@/lib/helpers";
-import { redirect } from "next/navigation";
-import Menu from "./Menu";
 import Link from "next/link";
+import Delete from "./Delete";
 
 function EntrieCard({ entrie, onDelete }) {
   const { title, wordCount, created_at, updated_at, id } = entrie;
@@ -22,7 +21,7 @@ function EntrieCard({ entrie, onDelete }) {
             </div>
           </div>
         </Link>
-        <Menu id={id} onDelete={onDelete} />
+        <Delete resource={entrie} onDelete={onDelete} />
       </div>
     </li>
   );

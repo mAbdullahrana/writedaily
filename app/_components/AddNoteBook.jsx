@@ -14,7 +14,7 @@ function AddNoteBook({ children, as }) {
   if (as === "button") {
     return (
       <div className="">
-        <Button onClick={handleCreateEntrie} as="primary">
+        <Button disabled={isPending} onClick={handleCreateEntrie} as="primary">
           <span>
             {!isPending ? (
               <Plus />
@@ -32,7 +32,7 @@ function AddNoteBook({ children, as }) {
 
   return (
     <div className="fixed bottom-4 right-4 z-10">
-      <Button onClick={handleCreateEntrie} as="primary">
+      <Button disabled={isPending} onClick={handleCreateEntrie} as="primary">
         {!isPending ? (
           children
         ) : (

@@ -1,12 +1,23 @@
+import { useTransition } from "react";
 import Button from "./Button";
+import SpinnerMini from "./SpinnerMini";
 
-function ConfirmDelete({ onClose , onConfirm }) {
+function ConfirmDelete({ resource, onClose, onConfirm }) {
+  const [isPending, startTransition] = useTransition();
+
+  function handleOnConfirm(e) {
+    // Prevent click from bubbling up to the parent Link
+    e.stopPropagation();
+    // Your menu-specific logic here (e.g., open a dropdown, etc.)
+    startTransition(() => onConfirm(resource.id));
+  }
   return (
     <div className="w-[40rem] flex flex-col gap-[1.2rem] bg-lightgray p-6">
-      <h3>Delete </h3>
+      <h3>Delete {resource.title ? resource.title : resource.name} </h3>
       <p className="text-white mb-[1.2rem]">
-        Are you sure you want to delete this permanently? This action cannot be
-        undone.
+        Are you sure you want to delete this{" "}
+        {resource.title ? resource.title : resource.name} permanently? This
+        action cannot be undone.
       </p>
       <div className="flex justify-end gap-2">
         <button
@@ -15,7 +26,9 @@ function ConfirmDelete({ onClose , onConfirm }) {
         >
           Cancel
         </button>
-        <Button onClick={onConfirm} as="danger">Delete</Button>
+        <Button onClick={handleOnConfirm} disabled={isPending} as="danger">
+          {!isPending ? "Delete" : "Deleting..."}
+        </Button>
       </div>
     </div>
   );

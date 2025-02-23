@@ -4,6 +4,7 @@ import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import EntrieCard from "./EntrieCard";
 import Entrie from "./Entrie";
+import { deleteEntrie } from "@/lib/actions";
 
 export default function DraggableEntry({ entrie }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -23,7 +24,7 @@ export default function DraggableEntry({ entrie }) {
       {...attributes}
       
     >
-     <Entrie entrie = {entrie} />
+     <Entrie entrie = {entrie} onDelete={deleteEntrie} />
     </div>
   );
 }

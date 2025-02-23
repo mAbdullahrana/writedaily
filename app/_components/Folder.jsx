@@ -1,5 +1,6 @@
+import { deleteFolder } from "@/lib/actions";
 import { FolderClosed, FolderOpen } from "lucide-react";
-import Menu from "./Menu";
+import Delete from "./Delete";
 import { UNCATEGORIZED } from "./DroppableFolder";
 
 function Folder({ isExpanded, folder, entries, toggleExpand }) {
@@ -24,12 +25,12 @@ function Folder({ isExpanded, folder, entries, toggleExpand }) {
             </div>
 
             <div className="flex gap-2 items-center  justify-center">
-              <Menu id={folder.id} />
+              <Delete resource={folder} onDelete={deleteFolder} />
               <button
                 onClick={toggleExpand}
                 className="text-mediumDark hover:text-primaryButtonHover"
               >
-                {isExpanded ? <FolderClosed /> : <FolderOpen />}
+                {isExpanded ? <FolderOpen /> : <FolderClosed />}
               </button>
             </div>
           </>
@@ -40,4 +41,3 @@ function Folder({ isExpanded, folder, entries, toggleExpand }) {
 }
 
 export default Folder;
-

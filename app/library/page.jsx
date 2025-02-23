@@ -6,6 +6,8 @@ import { DragDropLibrary } from "../_components/DragDropLibrary";
 export default async function LibraryPage() {
   const folders = await getAllFolder();
   const entries = await getAllEntrie();
+
+  
   return (
     <div>
       <div className="flex justify-between items-center">

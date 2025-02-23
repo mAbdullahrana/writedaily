@@ -7,6 +7,7 @@ import { deleteEntrie } from "@/lib/actions";
 import { Plus } from "lucide-react";
 
 function EntriesList({ entries }) {
+  
   const [optimisticEntries, optimisticDelete] = useOptimistic(
     entries,
     (curEntries, entrieID) => {
