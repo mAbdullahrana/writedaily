@@ -1,6 +1,6 @@
 "use server";
 
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export async function generatePrompt(prompt) {
   try {
