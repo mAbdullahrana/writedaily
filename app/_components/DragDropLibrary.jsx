@@ -1,28 +1,28 @@
 // components/DragDrop/DragDropLibrary.jsx
 "use client";
 import React, { useState } from "react";
-import { DndContext, closestCenter } from "@dnd-kit/core";
+import {
+  DndContext,
+  PointerSensor,
+  closestCenter,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import { updateEntryFolder } from "@/lib/actions"; // Your backend update function
 import DroppableFolder, { UNCATEGORIZED } from "./DroppableFolder";
 
-function groupEntriesByFolder(folders, entries) {
-  const groups = { [UNCATEGORIZED]: [] };
-  folders.forEach((folder) => {
-    groups[folder.id] = [];
-  });
-  entries.forEach((entry) => {
-    if (entry.folderID && groups[entry.folderID] !== undefined) {
-      groups[entry.folderID].push(entry);
-    } else {
-      groups[UNCATEGORIZED].push(entry);
-    }
-  });
-  return groups;
-}
 
 export function DragDropLibrary({ entries: initialEntries, folders }) {
   const [entries, setEntries] = useState(initialEntries);
   const groupedEntries = groupEntriesByFolder(folders, entries);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    })
+  );
 
   const handleDragEnd = async (event) => {
     const { active, over } = event;
@@ -61,7 +61,11 @@ export function DragDropLibrary({ entries: initialEntries, folders }) {
   };
 
   return (
-    <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
+    <DndContext
+      sensors={sensors}
+      onDragEnd={handleDragEnd}
+      collisionDetection={closestCenter}
+    >
       <div className="flex flex-col min-h-screen p-6 space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 items-start">
           {folders.map((folder) => (
@@ -78,9 +82,28 @@ export function DragDropLibrary({ entries: initialEntries, folders }) {
             folder={{ id: UNCATEGORIZED, name: "Notebooks" }}
             entries={groupedEntries[UNCATEGORIZED]}
           />
-          
         </div>
       </div>
     </DndContext>
   );
+}
+
+
+
+
+// All of these are imported from '@dnd-kit/core'.
+
+function groupEntriesByFolder(folders, entries) {
+  const groups = { [UNCATEGORIZED]: [] };
+  folders.forEach((folder) => {
+    groups[folder.id] = [];
+  });
+  entries.forEach((entry) => {
+    if (entry.folderID && groups[entry.folderID] !== undefined) {
+      groups[entry.folderID].push(entry);
+    } else {
+      groups[UNCATEGORIZED].push(entry);
+    }
+  });
+  return groups;
 }

@@ -24,7 +24,7 @@ function Folder({ isExpanded, folder, entries, toggleExpand }) {
               </p>{" "}
             </div>
 
-            <div className="flex gap-2 items-center  justify-center">
+            <div className="flex gap-2 items-center  justify-center ">
               <Delete resource={folder} onDelete={deleteFolder} />
               <button
                 onClick={toggleExpand}

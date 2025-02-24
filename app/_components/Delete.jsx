@@ -7,7 +7,7 @@ import Modal from "./Modal";
 import CreateFolderForm from "./CreateFolderForm";
 import ConfirmDelete from "./ConfirmDelete";
 
-function Delete({ resource, onDelete }) {
+function Delete({ resource, onDelete  }) {
   
   return (
     <Modal>

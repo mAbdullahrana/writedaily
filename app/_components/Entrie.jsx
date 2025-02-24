@@ -1,20 +1,23 @@
-"use client";
-import Delete from "./Delete";
+import { redirect } from "next/navigation";
 
-function Entrie({ entrie, onDelete }) {
-  const { title, wordCount } = entrie;
-  function handleClick(e) {
-    e.stopPropagation();
-    console.log("ji")
+function Entrie({ entrie }) {
+  const { title, wordCount, id } = entrie;
+
+  function handleClick() {
+    redirect(`/write/${id}`);
   }
   return (
-    <li className="bg-lightgray hover:bg-secondary flex flex-col p-3 rounded-sm cursor-pointer">
-      <h3 className="text-lg font-semibold">{title}</h3>
+    <li
+      onClick={handleClick}
+      className="bg-lightgray cursor-pointer hover:bg-secondary flex flex-col p-3 rounded-sm h-full"
+    >
+      <div className="flex justify-between items-center">
+        <h3 className="text-lg font-semibold">{title}</h3>
+      </div>
       <div className="flex justify-between items-center mt-2">
         <p className="text-[0.7rem] text-mediumDark font-light">
           {wordCount} Words
         </p>
-        <Delete onClick={handleClick} resource={entrie} onDelete={onDelete} />
       </div>
     </li>
   );
