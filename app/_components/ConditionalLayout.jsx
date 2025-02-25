@@ -30,6 +30,14 @@ export default function ConditionalLayout({ children }) {
       </div>
     );
   }
+  if (pathname === "/") {
+    return (
+      <div className="min-h-screen flex">
+        {children}
+        {/* Right Side Content (Login Form) */}
+      </div>
+    );
+  }
 
   // Otherwise, render the full layout.
   return (
