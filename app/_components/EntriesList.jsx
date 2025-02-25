@@ -21,7 +21,7 @@ function EntriesList({ entries }) {
   }
   return (
     <div>
-      <div className="mt-4 shadow">
+      <div className="mt-4 shadow pl-6 pt-2 sm:p-0">
         <p className="bg-lightgray rounded-tl-lg rounded-tr-lg py-2 px-6 text-mediumDark font-semibold text-sm">
           Name
         </p>

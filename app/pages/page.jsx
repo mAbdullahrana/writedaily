@@ -9,7 +9,7 @@ export const metadata = {
 function Page() {
   return (
     <>
-      <h2 className="text-2xl font-bold">Recent Writings</h2>
+      <h2 className="text-2xl font-bold text-center sm:text-start">Recent Writings</h2>
       <Suspense fallback={<Spinner />}>
         <Entries />
       </Suspense>

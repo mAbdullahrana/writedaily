@@ -3,12 +3,7 @@
 
 import { usePathname } from "next/navigation";
 
-import { ThemeProvider } from "./ThemeProvider";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
 import Sidebar from "./Sidebar";
-import Link from "next/link";
 
 export default function ConditionalLayout({ children }) {
   const pathname = usePathname();
@@ -23,31 +18,39 @@ export default function ConditionalLayout({ children }) {
     );
   }
   if (pathname.startsWith("/login")) {
-    return (
-      <div className="min-h-screen flex">
-        {children}
-        {/* Right Side Content (Login Form) */}
-      </div>
-    );
+    return <div className="min-h-screen flex">{children}</div>;
   }
   if (pathname === "/") {
-    return (
-      <div className="min-h-screen flex">
-        {children}
-        {/* Right Side Content (Login Form) */}
-      </div>
-    );
+    return <div className="min-h-screen flex">{children}</div>;
   }
 
   // Otherwise, render the full layout.
   return (
-    <div className="flex h-screen">
-      <Sidebar pathname={pathname} />
-      <main className="flex-1 ml-[12.5rem] pl-8">
-        <div className="h-screen">
-          <div className="flex-1 overflow-y-auto pr-8 py-6">{children}</div>
-        </div>
-      </main>
+    <div className="flex flex-col h-screen">
+      {/* Main Content */}
+      <div className="flex flex-1 md:flex-row overflow-y-auto pb-16">
+        <Sidebar pathname={pathname} />
+        <main className="flex-1 ml-0 md:ml-[12.5rem] pl-0 md:pl-8 py-6 pr-4 md:pr-8">
+          {children}
+        </main>
+      </div>
+
+      {/* Fixed Footer */}
+      <footer className="fixed bottom-0 left-0 w-full pb-2">
+        <p className="text-white text-[0.5rem] text-center">
+          © 2025 All Rights Reserved.
+          <span>
+            <a
+              href="https://www.linkedin.com/in/muhammad-abdullah-9672bb247/"
+              className="underline text-[0.55rem]"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              M.Abdullah
+            </a>
+          </span>
+        </p>
+      </footer>
     </div>
   );
 }

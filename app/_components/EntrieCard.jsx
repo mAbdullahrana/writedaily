@@ -14,7 +14,7 @@ function EntrieCard({ entrie, onDelete }) {
             <div>
               <h3 className="text-lg font-semibold">{title}</h3>
             </div>
-            <div className="flex gap-2 text-[0.8rem] text-mediumDark font-light">
+            <div className="flex gap-2 text-[0.7rem] sm:text-[0.8rem] text-mediumDark font-light">
               <p>{wordCount} Words</p>
               <p>| Created {formatTimestamp(created_at)}</p>
               <p>| Updated {formatTimestamp(updated_at)}</p>
