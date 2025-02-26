@@ -1,34 +1,26 @@
-"use client";
-
 import ProfileHeader from "../_components/ProfileHeader";
 import ProfileStats from "../_components/ProfileStats";
 import FunFacts from "../_components/FunFacts";
 import NewWriters from "../_components/NewWriters";
 import Leaderboard from "../_components/Leaderboard";
+import { auth } from "@/lib/auth";
+import { getUser } from "@/lib/actions";
+import { formatDate, formatTimestamp } from "@/lib/helpers";
 
 // ProfilePage Component
-export default function ProfilePage() {
+export default async function ProfilePage() {
   // Replace with your real data as needed.
-  const user = {
-    username: "Le Bim",
-    joinedDate: "22 February 2025",
-    currentStreak: 0,
-    longestStreak: 0,
-    earnedBadges: 1,
-  };
+  const session = await auth();
 
-  const funFactsOverall = {
-    startDate: "22 February 2025",
-    wordsWritten: 66,
-    daysStarted: 1,
-    daysCompleted: 0,
-  };
+  const user = await getUser(session?.user.email);
 
-  const funFactsMonth = {
-    wordsWritten: 66,
-    daysStarted: 2,
-    daysCompleted: 0,
-  };
+  const {
+    fullName,
+    created_at,
+    currentStreak,
+    longestStreak,
+    earnedBadges = 1,
+  } = user;
 
   const leaders = [
     { avatar: "K", name: "Kevin Stowers", streakLevel: 422 },
@@ -64,15 +56,15 @@ export default function ProfilePage() {
         {/* Left Column: Main Profile Content */}
         <div className="flex-1">
           <ProfileHeader
-            username={user.username}
-            joinedDate={user.joinedDate}
+            username={fullName}
+            joinedDate={formatDate(created_at)}
           />
           <ProfileStats
-            currentStreak={user.currentStreak}
-            longestStreak={user.longestStreak}
-            earnedBadges={user.earnedBadges}
+            currentStreak={currentStreak}
+            longestStreak={longestStreak}
+            earnedBadges={earnedBadges}
           />
-          <FunFacts overall={funFactsOverall} month={funFactsMonth} />
+          <FunFacts user={user} />
         </div>
         {/* Right Column: Leaderboard (hidden on mobile) */}
         <div className="hidden lg:block lg:w-1/4">
