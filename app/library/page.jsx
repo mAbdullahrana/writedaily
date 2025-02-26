@@ -1,13 +1,17 @@
-import { getAllEntrie, getAllFolder } from "@/lib/actions";
+import { Suspense } from "react";
 import AddNoteBook from "../_components/AddNoteBook";
 import CreateNewFolder from "../_components/CreateNewFolder";
-import { DragDropLibrary } from "../_components/DragDropLibrary";
+import DragNDrop from "../_components/DragNDrop";
+import Spinner from "../_components/Spinner";
 
-export default async function LibraryPage() {
-  const folders = await getAllFolder();
-  const entries = await getAllEntrie();
+export const metadata = {
+  title: "Library / DailyWrite",
+  description: "Build Your Daily writing habbit with DailyWrite",
+};
 
-  
+export default  function Page() {
+
+
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -23,7 +27,9 @@ export default async function LibraryPage() {
           <AddNoteBook as="button" />
         </div>
       </div>
-      <DragDropLibrary entries={entries} folders={folders} />
+      <Suspense fallback={<Spinner />}>
+        <DragNDrop />
+      </Suspense>
     </div>
   );
 }

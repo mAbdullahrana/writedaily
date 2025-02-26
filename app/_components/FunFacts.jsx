@@ -22,7 +22,6 @@ async function FunFacts({ user }) {
         {totalWordsWritten} words, started writing on {totalDaysStarted} day(s),
         and completed at least 500 words on {totalDaysCompleted} day(s).
       </p>
-    
     </div>
   );
 }

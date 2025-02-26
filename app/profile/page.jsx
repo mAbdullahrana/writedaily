@@ -7,6 +7,11 @@ import { auth } from "@/lib/auth";
 import { getUser } from "@/lib/actions";
 import { formatDate, formatTimestamp } from "@/lib/helpers";
 
+
+export const metadata = {
+  title: "Pages / DailyWrite",
+  description: "Build Your Daily writing habbit with DailyWrite",
+};
 export default async function ProfilePage() {
  
   const session = await auth();
@@ -57,6 +62,7 @@ export default async function ProfilePage() {
           <ProfileHeader
             username={fullName}
             joinedDate={formatDate(created_at)}
+            session = {session}
           />
           <ProfileStats
             currentStreak={currentStreak}

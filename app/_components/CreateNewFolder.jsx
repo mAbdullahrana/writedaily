@@ -7,13 +7,13 @@ import Modal from "./Modal";
 function CreateNewFolder() {
   return (
     <Modal>
-      <Modal.Open opens="cabin-form">
+      <Modal.Open opens="folder-form">
         <Button as="secondary">
           <FolderPlus /> New Folder
         </Button>
       </Modal.Open>
-      <Modal.Window name="cabin-form">
-        <CreateFolderForm  />
+      <Modal.Window name="folder-form">
+        <CreateFolderForm />
       </Modal.Window>
     </Modal>
   );

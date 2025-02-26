@@ -1,6 +1,5 @@
-// components/DragDrop/DragDropLibrary.jsx
 "use client";
-import React, { useState } from "react";
+import { updateEntryFolder } from "@/lib/actions";
 import {
   DndContext,
   PointerSensor,
@@ -8,11 +7,11 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { updateEntryFolder } from "@/lib/actions"; // Your backend update function
+import { useState } from "react";
 import DroppableFolder, { UNCATEGORIZED } from "./DroppableFolder";
 
 
-export function DragDropLibrary({ entries: initialEntries, folders }) {
+export function DND({ entries: initialEntries, folders }) {
   const [entries, setEntries] = useState(initialEntries);
   const groupedEntries = groupEntriesByFolder(folders, entries);
 

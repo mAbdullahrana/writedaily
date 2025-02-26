@@ -1,4 +1,5 @@
 function ProfileStats({ currentStreak, longestStreak, earnedBadges }) {
+  
   const statsData = [
     { icon: "🔥", value: currentStreak, label: "Current Streak" },
     { icon: "🍾", value: longestStreak, label: "Longest Streak" },

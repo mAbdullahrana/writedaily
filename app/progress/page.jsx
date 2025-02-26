@@ -1,7 +1,11 @@
 import AllTimeStats from "../_components/AllTimeStats";
 import Chat from "../_components/Chat";
 
-async function page() {
+export const metadata = {
+  title: "Progress / DailyWrite",
+  description: "Build Your Daily writing habbit with DailyWrite",
+};
+function page() {
   return (
     <div>
       <AllTimeStats  />
