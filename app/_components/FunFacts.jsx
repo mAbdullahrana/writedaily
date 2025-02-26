@@ -22,11 +22,7 @@ async function FunFacts({ user }) {
         {totalWordsWritten} words, started writing on {totalDaysStarted} day(s),
         and completed at least 500 words on {totalDaysCompleted} day(s).
       </p>
-      <p className="text-mediumDark">
-        This month, {name} has written {month.wordsWritten} words, started
-        writing on {month.daysStarted} day(s), and completed at least 500 words
-        on {month.daysCompleted} day(s).
-      </p>
+    
     </div>
   );
 }

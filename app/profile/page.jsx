@@ -7,9 +7,8 @@ import { auth } from "@/lib/auth";
 import { getUser } from "@/lib/actions";
 import { formatDate, formatTimestamp } from "@/lib/helpers";
 
-// ProfilePage Component
 export default async function ProfilePage() {
-  // Replace with your real data as needed.
+ 
   const session = await auth();
 
   const user = await getUser(session?.user.email);
@@ -53,7 +52,7 @@ export default async function ProfilePage() {
   return (
     <div className="min-h-screen">
       <div className="flex flex-col lg:flex-row lg:space-x-10">
-        {/* Left Column: Main Profile Content */}
+   
         <div className="flex-1">
           <ProfileHeader
             username={fullName}
@@ -66,7 +65,7 @@ export default async function ProfilePage() {
           />
           <FunFacts user={user} />
         </div>
-        {/* Right Column: Leaderboard (hidden on mobile) */}
+   
         <div className="hidden lg:block lg:w-1/4">
           <Leaderboard leaders={leaders} />
           <NewWriters newWriters={newWriters} />

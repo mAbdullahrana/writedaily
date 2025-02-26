@@ -18,7 +18,7 @@ function Button({ as, to, children, onClick, ...otherProps }) {
         <button
           onClick={onClick}
           {...otherProps}
-          className="bg-primaryButton text-white hover:bg-primaryButtonHover text-[0.9rem] transition py-1 px-4 rounded-3xl flex gap-2 items-center justify-center disabled:cursor-not-allowed disabled:bg-orange-800 disabled:text-gray-300"
+          className="bg-primaryButton text-white hover:bg-primaryButtonHover text-[0.9rem] transition py-1 px-4 rounded-3xl flex gap-2 items-center justify-center disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-300"
         >
           {children}
         </button>
@@ -68,7 +68,7 @@ function Button({ as, to, children, onClick, ...otherProps }) {
     <button
       onClick={onClick}
       {...otherProps}
-      className="hover:text-primaryButton disabled:cursor-not-allowed disabled:bg-orange-800 disabled:text-gray-300  text-[0.9rem] transition py-1.5"
+      className="hover:text-primaryButton disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-300  text-[0.9rem] transition py-1.5"
     >
       {children}
     </button>

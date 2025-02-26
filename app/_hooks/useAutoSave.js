@@ -18,7 +18,7 @@ export default function useAutosave({ editor, entrie }) {
       const currentContentStr = JSON.stringify(currentContent);
 
       // If the content has changed compared to what was last saved,
-      // set a timeout to autosave after the debounce delay.
+      // setting a timeout to autosave after the debounce delay.
       if (currentContentStr !== lastSavedContent) {
         timeoutId = setTimeout(async () => {
           try {
