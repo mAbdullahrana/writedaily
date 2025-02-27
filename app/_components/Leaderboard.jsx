@@ -1,6 +1,9 @@
+import { getLeaderboard } from "@/lib/actions";
 import LeaderboardItem from "./LeaderboardItem";
 
-function Leaderboard({ leaders, newWriters }) {
+async function Leaderboard() {
+  const leaders = await getLeaderboard();
+
   return (
     <div className="bg-lightgray p-3 rounded-xl shadow">
       <h2 className="text-lg font-bold text-mediumDark mb-2">Leaderboard</h2>
@@ -8,9 +11,8 @@ function Leaderboard({ leaders, newWriters }) {
         {leaders.map((leader, index) => (
           <LeaderboardItem
             key={index}
-            avatar={leader.avatar}
-            name={leader.name}
-            streakLevel={leader.streakLevel}
+            name={leader.fullName}
+            streakLevel={leader.longestStreak}
           />
         ))}
       </div>
@@ -18,4 +20,4 @@ function Leaderboard({ leaders, newWriters }) {
   );
 }
 
-export default Leaderboard
+export default Leaderboard;

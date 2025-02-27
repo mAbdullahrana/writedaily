@@ -1,4 +1,4 @@
-import { updateEntrie } from "@/lib/actions";
+import { updateEntrie, updateUserStreak } from "@/lib/actions";
 import { format } from "date-fns";
 import { Save } from "lucide-react";
 import toast from "react-hot-toast";
@@ -20,6 +20,8 @@ export default function SaveWriting({ editor, entrie }) {
         updated_at: format(new Date(), "yyyy-MM-dd HH:mm:ss.SSSxxx"),
       });
       toast.success("Your changes have been saved!");
+
+      await updateUserStreak();
     } catch (error) {
       toast.error(error.message);
     }

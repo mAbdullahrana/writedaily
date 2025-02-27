@@ -20,9 +20,9 @@ function Hero() {
     </Link>
 
     {/* Hero Preview */}
-    <div className="border mt-16 mx-auto max-w-6xl w-full overflow-hidden rounded-lg shadow-lg">
+    {/* <div className="border mt-16 mx-auto max-w-6xl w-full overflow-hidden rounded-lg shadow-lg">
       <ArcadeEmbed />
-    </div>
+    </div> */}
     <div className="border mt-16 mx-auto max-w-6xl w-full overflow-hidden rounded-lg shadow-lg">
       <img
         src="ss.jpg"

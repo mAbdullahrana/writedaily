@@ -1,8 +1,10 @@
-function LeaderboardItem({ avatar, name, streakLevel, joined }) {
+import { CircleUser, UserRound } from "lucide-react";
+
+function LeaderboardItem({  name, streakLevel, joined }) {
   return (
     <div className="flex items-center space-x-2">
       <div className="w-7 h-6 rounded-full flex items-center justify-center text-white text-[0.83rem] bg-secondary">
-        {avatar}
+      <UserRound size={20} strokeWidth={1.75} />
       </div>
       <div className="flex items-center justify-between w-full">
         <p className="text-white text-[0.8rem]">{name}</p>
@@ -26,4 +28,4 @@ function LeaderboardItem({ avatar, name, streakLevel, joined }) {
   );
 }
 
-export default LeaderboardItem
+export default LeaderboardItem;
