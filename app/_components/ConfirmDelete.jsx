@@ -4,6 +4,7 @@ import SpinnerMini from "./SpinnerMini";
 import toast from "react-hot-toast";
 
 function ConfirmDelete({ resource, onClose, onConfirm }) {
+
   const [isPending, startTransition] = useTransition();
 
   function handleOnConfirm(e) {

@@ -1,5 +1,5 @@
 "use client";
-import { updateEntryFolder } from "@/lib/actions";
+import { deleteEntrie, updateEntryFolder } from "@/lib/actions";
 import {
   DndContext,
   PointerSensor,
@@ -7,32 +7,49 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { useOptimistic, useState } from "react";
+import { useOptimistic, useTransition } from "react";
 import DroppableFolder, { UNCATEGORIZED } from "./DroppableFolder";
 
-
 export function DND({ entries: initialEntries, folders }) {
-
-
-  const [entries, setEntries] = useState(initialEntries);
-  const groupedEntries = groupEntriesByFolder(folders, entries);
-
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 8,
-      },
-    })
+  const [isPending, startTransition] = useTransition();
+  const [entries, setEntries] = useOptimistic(
+    initialEntries,
+    (prev, update) => {
+      if (update.type === "delete") {
+        return prev.filter((entry) => entry.id !== update.entryID);
+      }
+      if (update.type === "move") {
+        return prev.map((entry) =>
+          entry.id === update.entryID
+            ? { ...entry, folderID: update.targetFolderID }
+            : entry
+        );
+      }
+      return prev;
+    }
   );
 
-  const handleDragEnd = async (event) => {
+  const groupedEntries = groupEntriesByFolder(folders, entries);
+
+  // Optimistic Delete
+  async function handelDeleteEntrie(entryID) {
+    setEntries({ type: "delete", entryID });
+
+    try {
+      await deleteEntrie(entryID);
+    } catch (error) {
+      console.error("Delete failed, reverting:", error);
+      setEntries(initialEntries); // Revert if delete fails
+    }
+  }
+
+  async function handleDragEnd(event) {
     const { active, over } = event;
     if (!over) return;
+
     const draggedEntryId = active.id;
-    // If dropping on UNCATEGORIZED, set folderID to null; otherwise, use over.id.
     const targetFolderID = over.id === UNCATEGORIZED ? null : over.id;
 
-    // Identify source folder for the dragged entry.
     let sourceFolderID = null;
     for (const folderID in groupedEntries) {
       if (
@@ -42,24 +59,28 @@ export function DND({ entries: initialEntries, folders }) {
         break;
       }
     }
+
     if (!sourceFolderID || sourceFolderID === (targetFolderID || UNCATEGORIZED))
       return;
 
+    startTransition(() => {
+      setEntries({ type: "move", entryID: draggedEntryId, targetFolderID });
+    });
+
     try {
-      // Update backend.
       await updateEntryFolder({ id: draggedEntryId, folderID: targetFolderID });
-      // Update local state.
-      setEntries((prev) =>
-        prev.map((entry) =>
-          entry.id === draggedEntryId
-            ? { ...entry, folderID: targetFolderID }
-            : entry
-        )
-      );
     } catch (error) {
-      console.error("Update failed:", error);
+      console.error("Move failed, reverting:", error);
+      // If the operation fails, revert to the initial entries
+      startTransition(() => {
+        setEntries(initialEntries);
+      });
     }
-  };
+  }
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } })
+  );
 
   return (
     <DndContext
@@ -74,14 +95,15 @@ export function DND({ entries: initialEntries, folders }) {
               key={folder.id}
               folder={folder}
               entries={groupedEntries[folder.id]}
+              onDeleteEntrie={handelDeleteEntrie}
             />
           ))}
         </div>
-        {/* Uncategorized folder rendered below, full width */}
         <div className="w-full">
           <DroppableFolder
             folder={{ id: UNCATEGORIZED, name: "Notebooks" }}
             entries={groupedEntries[UNCATEGORIZED]}
+            onDeleteEntrie={handelDeleteEntrie}
           />
         </div>
       </div>
@@ -89,16 +111,10 @@ export function DND({ entries: initialEntries, folders }) {
   );
 }
 
-
-
-
-// All of these are imported from '@dnd-kit/core'.
-
+// Function to Group Entries by Folder
 function groupEntriesByFolder(folders, entries) {
   const groups = { [UNCATEGORIZED]: [] };
-  folders.forEach((folder) => {
-    groups[folder.id] = [];
-  });
+  folders.forEach((folder) => (groups[folder.id] = []));
   entries.forEach((entry) => {
     if (entry.folderID && groups[entry.folderID] !== undefined) {
       groups[entry.folderID].push(entry);

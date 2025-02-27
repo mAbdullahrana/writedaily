@@ -5,7 +5,9 @@ import Delete from "./Delete";
 import { deleteEntrie } from "@/lib/actions";
 import Entrie from "./Entrie";
 
-export default function DraggableEntry({ entrie }) {
+export default function DraggableEntry({ entrie , onDeleteEntrie }) {
+  
+  console.log(onDeleteEntrie)
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: entrie.id,
     data: { entrie },
@@ -30,7 +32,7 @@ export default function DraggableEntry({ entrie }) {
       {/* Delete button positioned absolutely */}
       <div className="absolute right-2 bottom-2 opacity-0 group-hover:opacity-100 transition-opacity">
         <Delete
-          onDelete={deleteEntrie}
+          onDelete={onDeleteEntrie}
           className="text-red-500 hover:text-red-700"
           resource={entrie}
         />

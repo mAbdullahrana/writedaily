@@ -8,7 +8,8 @@ import Folder from "./Folder";
 
 export const UNCATEGORIZED = "uncategorized";
 
-export default function DroppableFolder({ folder, entries }) {
+export default function DroppableFolder({ folder, entries , onDeleteEntrie }) {
+
   const { setNodeRef, isOver } = useDroppable({ id: folder.id });
   const [isExpanded, setIsExpanded] = useState(false);
   const toggleExpand = () => setIsExpanded((prev) => !prev);
@@ -27,6 +28,7 @@ export default function DroppableFolder({ folder, entries }) {
         isExpanded={isExpanded}
         folder={folder}
         toggleExpand={toggleExpand}
+        
       />
 
       {isExpanded && (
@@ -36,7 +38,7 @@ export default function DroppableFolder({ folder, entries }) {
           }
         >
           {entries.map((entrie) => (
-            <DraggableEntry key={entrie.id} entrie={entrie} />
+            <DraggableEntry key={entrie.id} entrie={entrie} onDeleteEntrie = {onDeleteEntrie} />
           ))}
           {isOver && entries.length === 0 && (
             <p className="text-mediumDark text-sm">
@@ -49,7 +51,7 @@ export default function DroppableFolder({ folder, entries }) {
       {folder.id === UNCATEGORIZED && (
         <div className="grid grid-cols-3 gap-4 auto-rows-min ">
           {entries.map((entrie) => (
-            <DraggableEntry key={entrie.id} entrie={entrie} />
+            <DraggableEntry key={entrie.id} entrie={entrie} onDeleteEntrie = {onDeleteEntrie} />
           ))}
           {isOver && entries.length === 0 && (
             <p className="text-mediumDark text-sm">
