@@ -9,6 +9,7 @@ export default {
   ],
   theme: {
     extend: {
+      
       typography: {
         DEFAULT: {
           css: {

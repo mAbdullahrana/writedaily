@@ -7,11 +7,13 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { useState } from "react";
+import { useOptimistic, useState } from "react";
 import DroppableFolder, { UNCATEGORIZED } from "./DroppableFolder";
 
 
 export function DND({ entries: initialEntries, folders }) {
+
+
   const [entries, setEntries] = useState(initialEntries);
   const groupedEntries = groupEntriesByFolder(folders, entries);
 

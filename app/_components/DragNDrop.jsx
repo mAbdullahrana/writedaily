@@ -6,6 +6,10 @@ async function DragNDrop() {
     getAllFolder(),
     getAllEntrie(),
   ]);
+
+  
+
+
   return <DND entries={entries} folders={folders} />;
 }
 
