@@ -1,15 +1,28 @@
 import { useTransition } from "react";
 import Button from "./Button";
 import SpinnerMini from "./SpinnerMini";
+import toast from "react-hot-toast";
 
 function ConfirmDelete({ resource, onClose, onConfirm }) {
   const [isPending, startTransition] = useTransition();
 
   function handleOnConfirm(e) {
-    // Prevent click from bubbling up to the parent Link
     e.stopPropagation();
-    // Your menu-specific logic here (e.g., open a dropdown, etc.)
-    startTransition(() => onConfirm(resource.id));
+    try {
+      startTransition(() => {
+        onConfirm(resource.id);
+        toast.success(
+          resource.title
+            ? `${resource.title} Deleted Successfully`
+            : `${resource.name} Deleted Successfully`
+        );
+        onClose();
+      });
+    } catch (error) {
+      console.error("Error during confirmation:", error);
+      toast.error(error.message);
+      onClose();
+    }
   }
   return (
     <div className="w-[40rem] flex flex-col gap-[1.2rem] bg-lightgray p-6">

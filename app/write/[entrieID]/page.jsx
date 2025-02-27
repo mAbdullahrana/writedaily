@@ -20,7 +20,6 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-
   const { entrieID } = await params;
 
   const entrie = await getEntrie({ entrieID });
@@ -39,7 +38,11 @@ export default async function Page({ params }) {
     Color,
   ]);
 
-  return <TipTap content={content} entrie={entrie} />;
+  return (
+    <div className="px-2 sm:px-0">
+      <TipTap content={content} entrie={entrie} />
+    </div>
+  );
 }
 
 // Create a proper default JSON structure

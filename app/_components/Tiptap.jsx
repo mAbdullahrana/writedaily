@@ -10,12 +10,11 @@ import Typography from "@tiptap/extension-typography";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
-import { updateEntrie } from "@/lib/actions";
 import { WRITING_QUOTES } from "@/lib/quotes";
-import useAutosave from "../_hooks/useAutoSave";
+
 import FloatingTextMenuBar from "./FloatingTextMenuBar";
 import TextMenuBar from "./TextMenuBar";
-import { AUTOSAVE_TIME } from "@/lib/constants";
+import { useAutosave } from "../_hooks/useAutoSave";
 
 
 export default function TipTap({ content, entrie  }) {
@@ -26,7 +25,7 @@ export default function TipTap({ content, entrie  }) {
     editorProps: {
       attributes: {
         class:
-          "prose m-5 p-4 focus:outline-none text-white bg-lightgray transition-colors duration-300 max-w-3xl mx-auto rounded-xl h-screen",
+          "prose m-5 p-4 focus:outline-none text-white bg-lightgray transition-colors duration-300 max-w-3xl mx-auto rounded-xl min-h-screen",
       },
     },
     extensions: [
@@ -46,7 +45,7 @@ export default function TipTap({ content, entrie  }) {
     immediatelyRender: false,
   });
   
-  useAutosave({editor,  entrie});
+  // useAutosave({editor,  entrie});
 
   return (
     <>

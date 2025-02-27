@@ -1,4 +1,4 @@
-import { getAllEntrie, updateNoteBookTitle } from "@/lib/actions";
+import { updateNoteBookTitle } from "@/lib/actions";
 import { Check } from "lucide-react";
 import { useState } from "react";
 
@@ -8,10 +8,8 @@ function NoteBookName({ entrie }) {
 
   function handleUpdateName(e) {
     e.preventDefault();
-    updateNoteBookTitle({title , entrieID : entrie?.id});
-    // const data = await getAllEntrie();
+    updateNoteBookTitle({ title, entrieID: entrie?.id });
 
-    // console.log(data);
     if (title === "") setTitle("Add Page Title");
     setIsToggle((toggle) => !toggle);
   }

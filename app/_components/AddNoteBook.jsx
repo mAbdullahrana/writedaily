@@ -5,10 +5,12 @@ import { createEntrie } from "@/lib/actions";
 import { useTransition } from "react";
 import SpinnerMini from "./SpinnerMini";
 
+
 function AddNoteBook({ children, as }) {
   const [isPending, startTransition] = useTransition();
   function handleCreateEntrie() {
     startTransition(() => createEntrie());
+    
   }
 
   if (as === "button") {

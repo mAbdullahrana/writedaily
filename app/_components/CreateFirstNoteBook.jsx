@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import AddNoteBook from "./AddNoteBook"; // Ensure the correct path to your AddNoteBook component
+import AddNoteBook from "./AddNoteBook";
 
 function CreateFirstNoteBook() {
   

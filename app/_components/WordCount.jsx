@@ -4,11 +4,11 @@ import { useState } from "react";
 import { useWordCount } from "../_hooks/useWordCount";
 import Tooltip from "./Tooltip";
 
-export default function WordCount({ editor }) {
+export default function WordCount({ editor , entrie }) {
   const [hovered, setHovered] = useState(false);
-  const wordCount = useWordCount(editor);
+  const wordCount = useWordCount(editor , entrie);
 
-  const progress = Math.min((wordCount / 500) * 100, 100);
+  const progress = Math.min((wordCount / entrie.goal) * 100, 100);
   const radius = 45;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (progress / 100) * circumference;
@@ -35,8 +35,8 @@ export default function WordCount({ editor }) {
           cx="50"
           cy="50"
           r={radius}
-          stroke="blue"
-          strokeWidth="11"
+          stroke="#7A4BCC"
+          strokeWidth="10"
           fill="transparent"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
@@ -51,7 +51,7 @@ export default function WordCount({ editor }) {
 
       {hovered && (
         <Tooltip>
-          Today: {wordCount} / Goal: {500}
+          Today: {wordCount} / Goal: {entrie.goal}
         </Tooltip>
       )}
     </div>

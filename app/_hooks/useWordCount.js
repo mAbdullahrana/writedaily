@@ -1,8 +1,9 @@
+import { updateEntrie } from "@/lib/actions";
+
 const { useState, useEffect } = require("react");
 
-export function useWordCount(editor) {
-  const [wordCount, setWordCount] = useState(0);
-
+export function useWordCount(editor, entrie) {
+  const [wordCount, setWordCount] = useState(entrie.wordCount);
 
   useEffect(() => {
     const updateWordCount = () => setWordCount(getWordCount());
