@@ -5,9 +5,8 @@ import Delete from "./Delete";
 import { deleteEntrie } from "@/lib/actions";
 import Entrie from "./Entrie";
 
-export default function DraggableEntry({ entrie , onDeleteEntrie }) {
-  
-  console.log(onDeleteEntrie)
+export default function DraggableEntry({ entrie, onDeleteEntrie }) {
+  console.log(onDeleteEntrie);
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: entrie.id,
     data: { entrie },
@@ -24,12 +23,10 @@ export default function DraggableEntry({ entrie , onDeleteEntrie }) {
       {...attributes}
       className="relative group"
     >
-      {/* Drag handle area */}
       <div {...listeners}>
         <Entrie entrie={entrie} />
       </div>
 
-      {/* Delete button positioned absolutely */}
       <div className="absolute right-2 bottom-2 opacity-0 group-hover:opacity-100 transition-opacity">
         <Delete
           onDelete={onDeleteEntrie}

@@ -39,12 +39,7 @@ const buttonsData = [
     label: "Settings",
     as: "link",
   },
-  {
-    to: "/signout",
-    icon: <LogOut />,
-    label: "SignOut",
-    as: "link",
-  },
+
 ];
 
 function Navigation({ pathname }) {

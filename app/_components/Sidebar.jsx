@@ -34,10 +34,10 @@ export default function Sidebar({ pathname }) {
           <div className="px-4 py-4 flex flex-col items-start flex-1">
             <Logo />
             <Navigation pathname={pathname} />
+            <SignOutButton />
           </div>
         </aside>
         <Feedback />
-        <SignOutButton />
       </div>
 
       {/* Overlay when menu is open */}
