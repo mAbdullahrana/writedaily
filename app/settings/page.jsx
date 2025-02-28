@@ -1,15 +1,13 @@
+import { auth } from "@/lib/auth";
 import Configuration from "../_components/Configuration";
 import GeneralInfo from "../_components/GeneralInfo";
+import { getUser } from "@/lib/actions";
 
 // SettingsPage Component: Combines the above components in a responsive layout.
-export default function SettingsPage() {
-  // Replace with your actual data.
-  const userInfo = {
-    fullName: "Le Bim",
-    email: "mefew123@gmail.com",
-    timeZone: "Asia/Karachi",
-    phone: "Not set",
-  };
+export default async function SettingsPage() {
+  const session = await auth();
+
+  const user = await getUser(session.user.email);
 
   const configInfo = {
     writingGoal: "I would like to set a daily writing goal.",
@@ -21,16 +19,16 @@ export default function SettingsPage() {
   };
 
   return (
-    <div>
+    <div className="px-4">
       <GeneralInfo
-        fullName={userInfo.fullName}
-        email={userInfo.email}
-        timeZone={userInfo.timeZone}
-        phone={userInfo.phone}
+        fullName={user.fullName}
+        email={user.email}
+        timeZone={user.timezone}
       />
       <Configuration
         writingGoal={configInfo.writingGoal}
         defaultPrompts={configInfo.defaultPrompts}
+        user={user}
       />
     </div>
   );

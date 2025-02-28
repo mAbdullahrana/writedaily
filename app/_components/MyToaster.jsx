@@ -23,7 +23,7 @@ export default function MyToaster() {
             padding: "6px",
             borderRadius: "0.5rem",
           },
-          duration: 3000,
+          duration: 5000,
         },
 
         error: {
