@@ -4,12 +4,12 @@ import { usePathname } from "next/navigation";
 
 import Sidebar from "./Sidebar";
 import AppFooter from "./AppFooter";
+import { auth } from "@/lib/auth";
 
 export default function ConditionalLayout({ children }) {
+
   const pathname = usePathname();
 
-  // If we are on a route that starts with /write,
-  // we render a minimal layout.
   if (pathname.startsWith("/write")) {
     return (
       <div className="bg-dark max-w-full text-white">
