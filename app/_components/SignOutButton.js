@@ -12,7 +12,6 @@ function SignOutButton() {
       signOutAction();
       toast.success("Sign out successfully");
     });
-
   }
   return (
     <button
@@ -24,7 +23,7 @@ function SignOutButton() {
           <LogOut className="h-6 w-6 text-primary-600" />
         ) : (
           <div className="h-6 w-6">
-          <SpinnerMini />
+            <SpinnerMini />
           </div>
         )}
         <span>Sign out</span>

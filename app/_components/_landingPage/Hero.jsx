@@ -23,9 +23,9 @@ function Hero() {
     {/* <div className="border mt-16 mx-auto max-w-6xl w-full overflow-hidden rounded-lg shadow-lg">
       <ArcadeEmbed />
     </div> */}
-    <div className="border mt-16 mx-auto max-w-6xl w-full overflow-hidden rounded-lg shadow-lg">
+    <div className="border mt-16 mx-auto max-w-6xl w-full overflow-hidden rounded-lg shadow-lg border-gray-300">
       <img
-        src="ss.jpg"
+        src="sss.webp"
         alt="Descriptive Alt Text"
         className="w-full h-auto object-cover transition-transform duration-300 hover:scale-105"
       />
