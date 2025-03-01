@@ -1,10 +1,9 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { generatePrompt } from "../_services/ai";
-import SpinnerMini from "./SpinnerMini";
+import MiniMessageSpinner from "./MiniMessageSpinner";
 
 const LOCAL_STORAGE_KEY = "chatMessages";
 
@@ -19,12 +18,12 @@ function Chat() {
   });
 
   const modes = [
-    "Give me a writing prompt",
-    "Give me a poem prompt",
-    "Give me a story prompt",
-    "Give me a journaling prompt",
-    "Give me a creative prompt",
+    { genre: "General Writing", mode: "Give me a writing prompt" },
+    { genre: "Storytelling", mode: "Give me a story prompt" },
+    { genre: "Journaling", mode: "Give me a journaling prompt" },
+    { genre: "Creative ", mode: "Give me a creative prompt" },
   ];
+
   const [selectedMode, setSelectedMode] = useState(modes[0]);
   const [showModes, setShowModes] = useState(false);
 
@@ -34,8 +33,13 @@ function Chat() {
     }
   }, [messages]);
 
+  const handleClearStorage = () => {
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    setMessages([]);
+  };
+
   const handleSend = async () => {
-    const basePrompt = `${selectedMode}`;
+    const basePrompt = selectedMode.mode;
     const newMessages = [...messages, { text: basePrompt, sender: "user" }];
     setMessages(newMessages);
 
@@ -52,28 +56,25 @@ function Chat() {
 
   return (
     <div className="max-w-full w-full text-white bg-dark rounded-lg shadow-lg p-4 flex flex-col h-[500px]">
-      {/* Mode selection */}
       <div className="mb-4">
-        {/* Desktop Mode Buttons */}
         <div className="hidden md:flex flex-wrap gap-2">
           {modes.map((mode) => (
             <button
-              key={mode}
+              key={mode.genre}
               onClick={() => setSelectedMode(mode)}
               className={`px-4 py-2 rounded-lg border ${
-                selectedMode === mode
+                selectedMode.genre === mode.genre
                   ? "bg-primaryButton text-white border-primaryButton"
                   : "bg-secondary text-white border-lightgray"
               }`}
             >
-              {mode}
+              {mode.genre}
             </button>
           ))}
         </div>
 
-        {/* Mobile Hamburger Menu */}
         <div className="flex md:hidden justify-between items-center border-b pb-2">
-          <span className="text-sm font-medium">{selectedMode}</span>
+          <span className="text-sm font-medium">{selectedMode.genre}</span>
           <button onClick={() => setShowModes(!showModes)}>
             <svg
               className="w-6 h-6 text-white"
@@ -95,25 +96,24 @@ function Chat() {
           <div className="mt-2 flex flex-col gap-2 md:hidden">
             {modes.map((mode) => (
               <button
-                key={mode}
+                key={mode.genre}
                 onClick={() => {
                   setSelectedMode(mode);
                   setShowModes(false);
                 }}
                 className={`px-4 py-2 rounded-lg border ${
-                  selectedMode === mode
+                  selectedMode.genre === mode.genre
                     ? "bg-primaryButton text-white border-primaryButton"
                     : "bg-secondary text-white border-lightgray"
                 }`}
               >
-                {mode}
+                {mode.genre}
               </button>
             ))}
           </div>
         )}
       </div>
 
-      {/* Chat messages */}
       <div className="flex-grow overflow-y-auto mb-4 space-y-3">
         {messages.map((message, index) => (
           <div
@@ -126,7 +126,7 @@ function Chat() {
               className={`px-4 py-1 rounded-lg max-w-[80%] ${
                 message.sender === "user"
                   ? "bg-primaryButton text-white"
-                  : "bg-gray-200 text-dark"
+                  : "bg-secondary text-white"
               }`}
             >
               <ReactMarkdown
@@ -154,18 +154,26 @@ function Chat() {
         ))}
         {isLoading && (
           <div className="flex justify-start">
-            <div className="px-4 py-1 rounded-lg max-w-[80%] bg-gray-200 text-dark">
-              <SpinnerMini />
+            <div className="px-4 py-1 rounded-lg max-w-[80%] bg-secondary text-white">
+              <MiniMessageSpinner />
             </div>
           </div>
         )}
       </div>
 
-      {/* Generate Prompt Button */}
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-between gap-4">
+        <button
+          onClick={handleClearStorage}
+          className="w-1/3 bg-red-600 text-white hover:bg-red-700 text-[0.9rem] transition py-2 px-4 rounded-xl flex gap-2 items-center justify-center disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-300"
+          disabled={messages.length === 0}
+        >
+          Clear Chat
+        </button>
+
         <button
           onClick={handleSend}
-          className="w-full bg-primaryButton text-white hover:bg-primaryButtonHover text-[0.9rem] transition py-2 px-4 rounded-xl flex gap-2 items-center justify-center disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-300"
+          disabled={isLoading}
+          className="w-2/3 bg-primaryButton text-white hover:bg-primaryButtonHover text-[0.9rem] transition py-2 px-4 rounded-xl flex gap-2 items-center justify-center disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-300"
         >
           Generate Prompt
         </button>

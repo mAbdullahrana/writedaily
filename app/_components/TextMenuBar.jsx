@@ -13,10 +13,10 @@ function TextMenuBar({ editor, entrie }) {
         <Prompt />
         <NoteBookName entrie={entrie} />
       </div>
-      <div>
+      <div className="flex items-center justify-center max-w-full">
         <SaveWriting entrie={entrie} editor={editor} />
       </div>
-      <div className="flex gap-6">
+      <div className="flex gap-3 items-center justify-center">
         <SetGoal entrie={entrie} />
         <WordCount entrie={entrie} editor={editor} />
       </div>

@@ -18,12 +18,12 @@ export default function SetGoal({ entrie }) {
 
     setNoteBookGoal({ goal, entrieID: entrie?.id });
     toast.success("Goal set successfully");
-    // Exit edit mode
+
     setIsToggle(false);
   }
 
   function handleSetName(e) {
-    // Ensure we're storing a number
+   
     setGoal(Number(e.target.value));
   }
 
@@ -41,19 +41,19 @@ export default function SetGoal({ entrie }) {
           onClick={handleToggle}
         >
           {initialGoal === 500
-            ? "Set your word target"
-            : `Word Target: ${goal} words`}
+            ? "Set your target"
+            : `Word Target: ${goal} `}
         </button>
       ) : (
         <div className="flex gap-1">
           <input
-            className="bg-[#000] text-sm text-white px-3 py-[0.25rem] rounded-[0.8rem] outline-none"
+            className="bg-[#000] text-sm text-white px-3 py-[0.25rem] rounded-[0.2rem] outline-none"
             type="number"
             value={goal}
             onChange={handleSetName}
           />
           <button
-            className="text-mediumDark hover:text-white bg-[#000] hover:bg-lightgray transition px-2 rounded-[0.8rem]"
+            className="text-mediumDark hover:text-white bg-[#000] hover:bg-lightgray transition px-2 rounded-[0.6rem]"
             type="button"
             onClick={handleSetGoal}
           >

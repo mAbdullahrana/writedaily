@@ -1,6 +1,7 @@
 import { updateNoteBookTitle } from "@/lib/actions";
 import { Check } from "lucide-react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 function NoteBookName({ entrie }) {
   const [title, setTitle] = useState(entrie?.title || "Add Page Title");
@@ -9,6 +10,7 @@ function NoteBookName({ entrie }) {
   function handleUpdateName(e) {
     e.preventDefault();
     updateNoteBookTitle({ title, entrieID: entrie?.id });
+    toast.success("Name updated successfully");
 
     if (title === "") setTitle("Add Page Title");
     setIsToggle((toggle) => !toggle);
@@ -34,13 +36,13 @@ function NoteBookName({ entrie }) {
       ) : (
         <div className="flex gap-1">
           <input
-            className="bg-[#000] text-sm text-white px-3 py-[0.25rem] rounded-[0.8rem] outline-none"
+            className="bg-[#000] text-sm text-white px-3 py-[0.25rem] rounded-[0.2rem] outline-none"
             type="text"
             value={title}
             onChange={handleSetName}
           />
           <button
-            className="text-mediumDark hover:text-white  bg-[#000] hover:bg-lightgray transition px-2 rounded-[0.8rem] "
+            className="text-mediumDark hover:text-white  bg-[#000] hover:bg-lightgray transition px-2 rounded-[0.6rem] "
             type="button"
             onClick={handleUpdateName}
           >

@@ -10,7 +10,7 @@ export default function Sidebar({ pathname }) {
 
   return (
     <>
-      {/* Mobile Toggle Button */}
+     
       <button
         className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-lightgray text-black"
         onClick={() => setIsOpen(!isOpen)}
@@ -22,7 +22,7 @@ export default function Sidebar({ pathname }) {
         )}
       </button>
 
-      {/* Sidebar */}
+
       <div
         className={`fixed top-0 left-0 h-screen w-[12.5rem] flex flex-col justify-between items-start
           shadow-lg  transition-transform duration-300 
@@ -37,10 +37,10 @@ export default function Sidebar({ pathname }) {
             <SignOutButton />
           </div>
         </aside>
-        <Feedback />
+        {/* <Feedback /> */}
       </div>
 
-      {/* Overlay when menu is open */}
+  
       {isOpen && <div onClick={() => setIsOpen(false)}></div>}
     </>
   );

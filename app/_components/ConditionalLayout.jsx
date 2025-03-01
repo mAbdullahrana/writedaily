@@ -2,9 +2,8 @@
 
 import { usePathname } from "next/navigation";
 
-import Sidebar from "./Sidebar";
 import AppFooter from "./AppFooter";
-import { auth } from "@/lib/auth";
+import Sidebar from "./Sidebar";
 
 export default function ConditionalLayout({ children }) {
 
