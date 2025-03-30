@@ -1,6 +1,6 @@
 # WriteDaily
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) [![Next.js](https://img.shields.io/badge/Next.js-v12-blue.svg)](https://nextjs.org/) [![Supabase](https://img.shields.io/badge/Supabase-Database-orange.svg)](https://supabase.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) [![Next.js](https://img.shields.io/badge/Next.js-v15-blue.svg)](https://nextjs.org/) [![Supabase](https://img.shields.io/badge/Supabase-Database-orange.svg)](https://supabase.com/)
 
 **WriteDaily** is a dynamic writing application built with Next.js to help users build and maintain a daily writing habit. It features rich text formatting, AI-generated prompts, streak tracking, daily goals, and analytics to monitor your progress. Supabase is used solely as the database to store user data, while NextAuth handles authentication with providers like Google.
 
