@@ -1,103 +1,96 @@
-WriteDaily
-WriteDaily is a dynamic writing application built with Next.js that helps users build and maintain their daily writing habit. The app features rich text formatting, AI-generated prompts, streak tracking, daily goals, and analytics to monitor your progress. Supabase is used exclusively as the database for storing user data, while NextAuth handles authentication with providers like Google.
+# WriteDaily
 
-Table of Contents
-Overview
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) [![Next.js](https://img.shields.io/badge/Next.js-v12-blue.svg)](https://nextjs.org/) [![Supabase](https://img.shields.io/badge/Supabase-Database-orange.svg)](https://supabase.com/)
 
-Features
+**WriteDaily** is a dynamic writing application built with Next.js to help users build and maintain a daily writing habit. It features rich text formatting, AI-generated prompts, streak tracking, daily goals, and analytics to monitor your progress. Supabase is used solely as the database to store user data, while NextAuth handles authentication with providers like Google.
 
-Technologies Used
+---
 
-Getting Started
+## Table of Contents
 
-Prerequisites
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Environment Variables](#environment-variables)
+- [Supabase Setup](#supabase-setup)
+- [Authentication Setup](#authentication-setup)
+- [Running the Application Locally](#running-the-application-locally)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-Installation
+---
 
-Environment Variables
+## Overview
 
-Supabase Setup
+WriteDaily is designed to support writers in establishing a consistent daily routine. It combines creative prompts, progress tracking, and data-driven insights in a modern, responsive design powered by Next.js. The database operations are handled by Supabase, ensuring efficient storage and retrieval of your writing data.
 
-Authentication Setup
+---
 
-Running the Application Locally
+## Features
 
-Deployment
+- **Rich Text Formatting:** Customize your writing using an intuitive text editor.
+- **AI-Generated Prompts:** Get creative suggestions to overcome writer's block.
+- **Streak Tracking:** Monitor your daily writing streaks and maintain motivation.
+- **Daily Goals:** Set personal writing targets and track your achievements.
+- **Analytics:** Gain insights into your writing habits with detailed analytics.
 
-Contributing
+---
 
-License
+## Technologies Used
 
-Contact
+- **Next.js:** For building a fast, scalable, and SEO-friendly frontend.
+- **Supabase:** Serves as the database solution, handling all data operations.
+- **NextAuth:** Provides seamless authentication (including Google sign-in).
+- **Additional Integrations:**
+  - **Google Analytics:** Track user interactions and engagement.
+  - **OpenRouter API & Gemini API:** Enhance prompt generation and integration.
 
-Overview
-WriteDaily is designed to support users in establishing a consistent writing routine through a combination of creative prompts, progress tracking, and data-driven insights. It leverages a modern stack with Next.js for the frontend and Supabase as its database backend.
+---
 
-Features
-Rich Text Formatting: Customize your writing using a full-featured text editor.
+## Getting Started
 
-AI-Generated Prompts: Get creative suggestions to overcome writer's block.
+### Prerequisites
 
-Streak Tracking: Monitor your daily writing streaks and keep yourself accountable.
+Make sure you have the following installed:
 
-Daily Goals: Set writing targets to boost productivity.
+- [Node.js](https://nodejs.org/) (v12 or later)
+- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
+- [Git](https://git-scm.com/)
 
-Analytics: Gain insights into your writing habits with detailed analytics.
+### Installation
 
-Technologies Used
-Next.js: For building a fast and scalable React-based frontend.
+1. **Clone the Repository:**
 
-Supabase: Used solely as the database solution to store user writings, analytics, and other data.
+   ```bash
+   git clone https://github.com/mAbdullahrana/writedaily.git
+   cd writedaily
+   ```
 
-NextAuth: For handling user authentication, including Google sign-in.
+2. **Install Dependencies:**
 
-Additional Services:
+   Using npm:
 
-Google Analytics: (via NEXT_PUBLIC_GA_TRACKING_ID) for tracking usage.
+   ```bash
+   npm install
+   ```
 
-OpenRouter API: For any additional AI or prompt generation functionalities.
+   Or using Yarn:
 
-Gemini API: For additional integrations as needed.
+   ```bash
+   yarn install
+   ```
 
-Getting Started
-Prerequisites
-Ensure you have the following installed:
+### Environment Variables
 
-Node.js (v12 or later)
+Create a `.env.local` file in the root directory with the following content. **Replace the placeholder values with your own credentials:**
 
-npm or Yarn
-
-Git
-
-Installation
-Clone the Repository:
-
-bash
-Copy
-Edit
-git clone https://github.com/mAbdullahrana/writedaily.git
-cd writedaily
-Install Dependencies:
-
-Using npm:
-
-bash
-Copy
-Edit
-npm install
-Or using Yarn:
-
-bash
-Copy
-Edit
-yarn install
-Environment Variables
-Create a .env.local file in the root directory with the following content. Replace the placeholder values with your own credentials:
-
-ini
-Copy
-Edit
-# Supabase
+```env
+# Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_KEY=your_supabase_key
 
@@ -115,90 +108,103 @@ NEXT_PUBLIC_GA_TRACKING_ID=your_google_analytics_tracking_id
 
 # OpenRouter API
 OPENROUTER_API_KEY=your_openrouter_api_key
-Security Note: Do not expose these keys in a public repository. Consider using environment variable management or secret management services when deploying.
+```
 
-Supabase Setup
-Create a Supabase Project:
+> **Security Note:** Do not commit these actual keys or secrets to your public repository. Use a secret management solution when deploying.
 
-Sign up at Supabase.
+---
 
-Create a new project and obtain your Supabase URL and SUPABASE KEY.
+## Supabase Setup
 
-Database Configuration:
+1. **Create a Supabase Project:**
+   - Sign up at [Supabase](https://supabase.com/).
+   - Create a new project and obtain your **Supabase URL** and **SUPABASE KEY**.
+2. **Database Configuration:**
+   - Configure your tables and schemas to store user writings, analytics, and streak data.
+   - Refer to the [Supabase documentation](https://supabase.com/docs) for detailed guidance.
 
-Set up your tables and schemas to store user data such as writings, analytics, and streaks.
+---
 
-Follow the Supabase documentation for guidance.
+## Authentication Setup
 
-Authentication Setup
-WriteDaily uses NextAuth for authentication. The following variables are required for Google authentication:
+WriteDaily uses NextAuth for authentication, including Google sign-in. Configure the following in your `.env.local` file:
 
-AUTH_GOOGLE_ID: Your Google OAuth client ID.
+- **AUTH_GOOGLE_ID:** Your Google OAuth client ID.
+- **AUTH_GOOGLE_SECRET:** Your Google OAuth client secret.
+- **AUTH_SECRET:** A secret string for session token encryption.
 
-AUTH_GOOGLE_SECRET: Your Google OAuth client secret.
+For more details, refer to the [NextAuth documentation](https://next-auth.js.org/).
 
-AUTH_SECRET: A secret string for encrypting session tokens.
+---
 
-Set these in your .env.local as shown above. For more details on configuring NextAuth, please refer to the NextAuth documentation.
+## Running the Application Locally
 
-Running the Application Locally
-After configuring your environment variables, start the development server:
+Once you have configured your environment variables, start the development server:
 
 Using npm:
 
-bash
-Copy
-Edit
+```bash
 npm run dev
+```
+
 Or using Yarn:
 
-bash
-Copy
-Edit
+```bash
 yarn dev
-Then open http://localhost:3000 in your browser to view the application.
+```
 
-Deployment
-WriteDaily can be deployed on platforms that support Next.js such as Vercel or Netlify. Below is a brief guide for deploying on Vercel:
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the app in action.
 
-Push Your Code to GitHub: Ensure all changes are committed.
+---
 
-Import Repository in Vercel: Log into Vercel and import your repository.
+## Deployment
 
-Set Environment Variables: In the Vercel dashboard, add all required environment variables.
+WriteDaily is optimized for deployment on platforms that support Next.js, such as Vercel or Netlify.
 
-Deploy: Vercel will build and deploy your application automatically.
+### Deploying on Vercel
 
-For more details, refer to the Vercel documentation.
+1. **Push Your Code to GitHub:** Make sure all changes are committed and pushed.
+2. **Import the Repository in Vercel:** Log into Vercel and import your GitHub repository.
+3. **Set Environment Variables:** In the Vercel dashboard, add all required environment variables.
+4. **Deploy:** Vercel will automatically build and deploy your application.
 
-Contributing
-Contributions are welcome! If you’d like to contribute to WriteDaily, please follow these steps:
+For more details, see the [Vercel documentation](https://vercel.com/docs).
 
-Fork the Repository
+---
 
-Create a New Branch:
+## Contributing
 
-bash
-Copy
-Edit
-git checkout -b feature/your-feature-name
-Commit Your Changes:
+Contributions are always welcome! To contribute:
 
-bash
-Copy
-Edit
-git commit -m "Description of your changes"
-Push Your Branch:
+1. **Fork the Repository**
+2. **Create a New Branch:**
 
-bash
-Copy
-Edit
-git push origin feature/your-feature-name
-Open a Pull Request: Provide a detailed explanation of your changes.
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+3. **Commit Your Changes:**
 
-Contact
-For any questions, suggestions, or feedback, please open an issue on the repository or contact the repository owner.
+   ```bash
+   git commit -m "Add feature or fix issue description"
+   ```
 
+4. **Push Your Branch:**
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+5. **Open a Pull Request:** Describe your changes and the benefits they bring.
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## Contact
+
+For questions, suggestions, or feedback, please [open an issue](https://github.com/mAbdullahrana/writedaily/issues) or contact the repository owner.
